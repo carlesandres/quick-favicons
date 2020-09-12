@@ -1,7 +1,7 @@
 import React from 'react';
 
 const TextControl = (props) => {
-  const { label } = props;
+  const { label, type='text' } = props;
   const name = label.replace(/ /g, '').toLowerCase();
 
   const onChange = (event) => {
@@ -12,7 +12,7 @@ const TextControl = (props) => {
   return (
     <div>
       <label htmlFor={name}>{label}</label>
-        <input type="text"
+        <input type={type}
           name={name}
           onChange={onChange}
           value={props.value}

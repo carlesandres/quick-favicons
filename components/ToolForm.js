@@ -1,13 +1,13 @@
 import React from 'react';
-import LineForm from '../components/LineForm';
+import ColorForm from '../components/ColorForm';
 
 
 const ToolForm = (props) => {
   return (
     <div>
-      <LineForm />
-
-
+      <ColorForm
+        color={props.color}
+      onChange={props.onChangeColor}/>
     </div>
   );
 };
