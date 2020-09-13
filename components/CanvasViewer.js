@@ -2,14 +2,12 @@ import React, { useRef, useEffect } from 'react'
 import { roundRect } from 'components/utils';
 
 const Canvas = props => {
-
   const canvasRef = useRef(null)
 
   const draw = (ctx, color = '#333', letter = 't') => {
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
-    console.log('ctx.canvas.width', ctx.canvas.width);
     ctx.fillStyle = color;
-    const width = ctx.canvas.width / 2;
+    const width = ctx.canvas.width;
     const half = width / 2;
 
     roundRect(ctx,0,0, width, width, width/5);
@@ -38,8 +36,8 @@ const Canvas = props => {
     const canvas = canvasRef.current
     const context = canvas.getContext('2d')
 
-    draw(context, props.color)
-  }, [draw, props.color])
+    draw(context, props.color, props.letter)
+  }, [draw, props.color, props.letter])
 
   return (
     <div>
@@ -47,8 +45,13 @@ const Canvas = props => {
         canvas {
           width: 200px;
           height: 200px;
-       }
+        }
+
+        button {
+        display:block;
+        }
       `}</style>
+      <h1>Preview</h1>
       <canvas
         width={1000}
         height={1000}

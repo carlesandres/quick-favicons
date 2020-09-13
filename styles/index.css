@@ -1,0 +1,20 @@
+body {
+  margin: 0;
+  font-family: monospace;
+  font-size: 16px;
+}
+
+nav {
+  padding: 20px;
+  background: #50f;
+  color: #fff;
+  font-size: 20px;
+}
+
+.grid {
+  padding: 20px;
+}
+
+canvas {
+  border: 1px solid #333;
+}

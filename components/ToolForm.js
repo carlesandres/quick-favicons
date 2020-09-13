@@ -1,13 +1,20 @@
 import React from 'react';
-import ColorForm from '../components/ColorForm';
-
+import TextControl from 'components/TextControl';
 
 const ToolForm = (props) => {
   return (
-    <div>
-      <ColorForm
-        color={props.color}
-      onChange={props.onChangeColor}/>
+    <div className="section">
+      <TextControl
+        label="BG color"
+        type="color"
+        value={props.color}
+        onChange={props.onChangeColor}
+      />
+      <TextControl
+        label="Letter"
+        value={props.letter || ''}
+        onChange={props.onChangeLetter}
+      />
     </div>
   );
 };

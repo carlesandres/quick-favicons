@@ -6,17 +6,29 @@ const TextControl = (props) => {
 
   const onChange = (event) => {
     const { value, name } = event.currentTarget;
-    props.onChange(name, value);
+    props.onChange(value, name);
   }
 
   return (
     <div>
-      <label htmlFor={name}>{label}</label>
-        <input type={type}
+      <style jsx>{`
+        label {
+        margin-right: 10px;
+        }
+
+        .control {
+          padding-bottom: 20px;
+        }
+      `}</style>
+        <div className="control">
+        <label htmlFor={name}>{label}</label>
+        <input
+          type={type}
           name={name}
           onChange={onChange}
           value={props.value}
         />
+        </div>
     </div>
   );
 };
