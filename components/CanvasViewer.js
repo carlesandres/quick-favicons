@@ -1,10 +1,12 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { roundRect } from 'components/utils';
 
 const Canvas = props => {
   const canvasRef = useRef(null)
+  const [ iconSVG, setIconSVG ] = useState();
+  const [loading, setLoading] = useState(false);
 
-  const draw = (ctx, color = '#333', letter = 't', radius = 0) => {
+  const draw = (ctx, color = '#333', letter = 't', radius = 0, icon) => {
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
     ctx.fillStyle = color;
     const width = ctx.canvas.width;
@@ -14,10 +16,14 @@ const Canvas = props => {
     roundRect(ctx,0,0, width, width, radNum );
 
     // Draw letter
-    ctx.fillStyle = 'white';
-    const fSize = half;
-    ctx.font = `bold normal ${half*1.8}px monospace`;
-    ctx.fillText(letter, half/2, 3*half / 2);
+    if (props.type === 'letter') {
+      ctx.fillStyle = 'white';
+      const fSize = half;
+      ctx.font = `bold normal ${half*1.8}px monospace`;
+      ctx.fillText(letter, half/2, 3*half / 2);
+    } else if (icon) {
+       ctx.drawImage(icon, 0, 0, 1000, 1000);
+    }
   }
 
   const download = () => {
@@ -36,8 +42,28 @@ const Canvas = props => {
     const canvas = canvasRef.current
     const context = canvas.getContext('2d')
 
-    draw(context, props.color, props.letter, props.radius)
-  }, [draw, props.color, props.letter, props.radius])
+    draw(context, props.color, props.letter, props.radius, iconSVG)
+  }, [draw, props.color, props.letter, props.radius, iconSVG])
+
+  useEffect(() => {
+    setIconSVG();
+    if (!props.icon) {
+      return;
+    }
+
+    setLoading(true);
+    try {
+    const img = new Image();
+      img.onload = function() {
+        setIconSVG(img);
+        setLoading(false);
+      }
+      img.src = `icons/${props.icon}.svg`;
+    } catch (err) {
+      throw err;
+      setLoading(false);
+    }
+  }, [props.icon])
 
   return (
     <section className="preview">
