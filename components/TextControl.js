@@ -1,12 +1,12 @@
 import React from 'react';
 
 const TextControl = (props) => {
-  const { label, type='text' } = props;
+  const { label, type='text', value, onChange, ...other } = props;
   const name = label.replace(/ /g, '').toLowerCase();
 
-  const onChange = (event) => {
+  const change = (event) => {
     const { value, name } = event.currentTarget;
-    props.onChange(value, name);
+    onChange(value, name);
   }
 
   return (
@@ -19,14 +19,20 @@ const TextControl = (props) => {
         .control {
           padding-bottom: 20px;
         }
+
+        input {
+          font-family: inherit;
+          font-size: inherit;
+        }
       `}</style>
         <div className="control">
-        <label htmlFor={name}>{label}</label>
+          <label htmlFor={name}>{`${label}:`}</label>
         <input
           type={type}
           name={name}
-          onChange={onChange}
-          value={props.value}
+          onChange={change}
+          value={value}
+          {...other}
         />
         </div>
     </div>

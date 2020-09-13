@@ -15,6 +15,15 @@ const ToolForm = (props) => {
         value={props.letter || ''}
         onChange={props.onChangeLetter}
       />
+      <TextControl
+        label="Border-radius (1-500)"
+        type="number"
+        min="0"
+        max="500"
+        step="5"
+        value={props.radius || 0}
+        onChange={props.onChangeRadius}
+      />
     </div>
   );
 };

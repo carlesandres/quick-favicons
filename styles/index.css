@@ -16,5 +16,11 @@ nav {
 }
 
 canvas {
-  border: 1px solid #333;
+  border: 1px dotted #aaa;
 }
+
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
