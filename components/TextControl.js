@@ -11,30 +11,15 @@ const TextControl = (props) => {
 
   return (
     <div>
-      <style jsx>{`
-        label {
-        margin-right: 10px;
-        }
-
-        .control {
-          padding-bottom: 20px;
-        }
-
-        input {
-          font-family: inherit;
-          font-size: inherit;
-        }
-      `}</style>
-        <div className="control">
-          <label htmlFor={name}>{`${label}:`}</label>
-        <input
-          type={type}
-          name={name}
-          onChange={change}
-          value={value}
-          {...other}
-        />
-        </div>
+      <label className="mr-8 font-bold"
+        htmlFor={name}>{`${label}:`}</label>
+      <input
+        type={type}
+        name={name}
+        onChange={change}
+        value={value}
+        {...other}
+      />
     </div>
   );
 };
