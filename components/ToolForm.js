@@ -28,6 +28,12 @@ const ToolForm = (props) => {
         onChange={props.onChangeColor}
       />
       <TextControl
+        label="FG color"
+        type="color"
+        value={props.fgcolor}
+        onChange={props.onChangeFGColor}
+      />
+      <TextControl
         label="Border-radius (1-500)"
         type="number"
         min="0"
@@ -38,7 +44,7 @@ const ToolForm = (props) => {
       />
 
       <Dropdown
-        label = 'Types'
+        label = 'Motif'
         onChange={props.onChangeType}
         value={props.type}
         options={props.types} />

@@ -9,8 +9,10 @@ const Dropdown = (props) => {
   });
 
   return (
-    <div className="control">
-      <label htmlFor={name}>{`${label}:`}</label>
+    <div className="control mt-8">
+      <label
+        className="font-bold mr-10"
+      htmlFor={name}>{`${label}:`}</label>
       <select
         defaultValue={value}
         onChange={onChange} >

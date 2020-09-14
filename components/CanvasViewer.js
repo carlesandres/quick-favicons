@@ -6,7 +6,7 @@ const Canvas = props => {
   const [ iconSVG, setIconSVG ] = useState();
   const [loading, setLoading] = useState(false);
 
-  const draw = (ctx, color = '#333', letter = 't', radius = 0, icon) => {
+  const draw = (ctx, color = '#333', letter = 't', radius = 0, icon, fgcolor) => {
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
     ctx.fillStyle = color;
     const width = ctx.canvas.width;
@@ -17,12 +17,19 @@ const Canvas = props => {
 
     // Draw letter
     if (props.type === 'letter') {
-      ctx.fillStyle = 'white';
+      ctx.fillStyle = fgcolor || 'white';
       const fSize = half;
       ctx.font = `bold normal ${half*1.8}px monospace`;
       ctx.fillText(letter, half/2, 3*half / 2);
     } else if (icon) {
-       ctx.drawImage(icon, 0, 0, 1000, 1000);
+      const xScale = 1000 / icon.width;
+      const yScale = 1000 / icon.height;
+      ctx.scale(xScale, yScale);
+      ctx.fillStyle = fgcolor || 'white';
+      ctx.strokeStyle = fgcolor || 'white';
+      ctx.stroke(icon.path2D);
+      ctx.fill(icon.path2D);
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
     }
   }
 
@@ -42,60 +49,78 @@ const Canvas = props => {
     const canvas = canvasRef.current
     const context = canvas.getContext('2d')
 
-    draw(context, props.color, props.letter, props.radius, iconSVG)
-  }, [draw, props.color, props.letter, props.radius, iconSVG])
+    draw(context, props.color, props.letter, props.radius, iconSVG, props.fgcolor)
+  }, [draw, props.color, props.letter, props.radius, iconSVG, props.fgcolor])
 
   useEffect(() => {
-    setIconSVG();
-    if (!props.icon) {
-      return;
-    }
+    const updateIcon = async () => {
+      setIconSVG();
+      if (!props.icon) {
+        return;
+      }
 
-    setLoading(true);
-    try {
-    const img = new Image();
-      img.onload = function() {
-        setIconSVG(img);
+      setLoading(true);
+      try {
+        const imgUrl = `icons/${props.icon}.svg`;
+        const resp = await fetch(imgUrl);
+        const XML = await resp.text();
+        const domparser = new DOMParser();
+        const ppp = domparser.parseFromString(XML, 'image/svg+xml');
+        const svg = ppp.querySelector('svg');
+        const viewBox = svg && svg.getAttribute('viewBox')
+        const [ , , width, height ] = viewBox?.split(' ');
+
+        const domPath = ppp.querySelector('path');
+        const path = domPath?.getAttribute('d');
+        if (!path) {
+          setLoading(false);
+          return;
+        }
+
+        const path2D = new Path2D(path);
+        const icon = {
+          path2D,
+          width: parseInt(width, 10),
+          height: parseInt(height, 10)
+         };
+
+        setIconSVG(icon);
+        setLoading(false);
+      } catch (err) {
+        throw err;
         setLoading(false);
       }
-      img.src = `icons/${props.icon}.svg`;
-    } catch (err) {
-      throw err;
-      setLoading(false);
     }
+    updateIcon();
   }, [props.icon])
 
   return (
-    <section className="preview">
+    <section className="preview text-center">
       <style jsx>{`
         canvas {
           width: 200px;
           height: 200px;
+          margin: 0 auto;
         }
 
-        button {
-          padding: 1em;
+        path {
+          fill: blue;
+          stroke: red;
         }
 
         button:hover {
           opacity: 0.5;
           cursor: pointer;
         }
-
-        .preview, .butt {
-          text-align: center;
-        }
-        .butt {
-          padding: 1em;
-        }
       `}</style>
-      <h1>Preview</h1>
+      <h1 className="font-bold text-3xl mb-10">Preview</h1>
       <canvas
         width={1000}
         height={1000}
         ref={canvasRef} {...props}/>
-      <div className="butt">
-        <button onClick={download}>Download</button>
+      <div className="mt-12">
+        <button className="p-4 border rounded bg-gray-500"
+          onClick={download}>Download</button>
       </div>
     </section>
   );

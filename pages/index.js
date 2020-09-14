@@ -7,13 +7,14 @@ const types = ['letter', 'svg'];
 
 export default function Home() {
   const [color, setColor] = useState('#333');
+  const [fgcolor, setFGColor] = useState('#ffffff');
   const [letter, setLetter] = useState('t');
   const [ radius, setRadius] = useState(100);
   const [icon, setIcon] = useState();
   const [ type, setType ] = useState(types[0]);
 
   return (
-    <div className="container">
+    <div className="">
       <Head>
         <title>Quick Favicons</title>
         <link rel="icon" href="/favicon.ico" />
@@ -23,32 +24,34 @@ export default function Home() {
         <div>Quick Favicons</div>
       </nav>
       <main>
-        <div className="grid">
+        <section className="p-10">
           <ToolForm
             color={color}
+            fgcolor={fgcolor}
             letter={letter}
             radius={radius}
             icon={icon}
             type={type}
             types={types}
             onChangeColor={setColor}
+            onChangeFGColor={setFGColor}
             onChangeLetter={setLetter}
             onChangeRadius={setRadius}
             onChangeIcon={setIcon}
             onChangeType={setType}
           />
-          <section className="preview">
-            <CanvasViewer
-              radius={radius}
-              color={color}
-              letter={letter}
-              icon={icon}
-              type={type}
-            />
-          </section>
-        </div>
+        </section>
+        <section className="p-10">
+          <CanvasViewer
+            radius={radius}
+            color={color}
+            fgcolor={fgcolor}
+            letter={letter}
+            icon={icon}
+            type={type}
+          />
+        </section>
       </main>
-      <footer> </footer>
     </div>
   )
 }
