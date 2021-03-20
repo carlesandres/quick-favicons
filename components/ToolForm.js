@@ -4,11 +4,10 @@ import Dropdown from 'components/Dropdown';
 import IconsDropdown from 'components/IconsDropdown';
 
 const ToolForm = (props) => {
-
   const iconsDr = <IconsDropdown
     value={props.icon}
     onChange={props.onChangeIcon}
-    />;
+  />;
   const letterControl =
       <TextControl
         label="Letter"
@@ -17,7 +16,6 @@ const ToolForm = (props) => {
       />;
 
   const typeControl = props.type === 'letter' ? letterControl : iconsDr;
-
 
   return (
     <div className="section">
@@ -42,14 +40,13 @@ const ToolForm = (props) => {
         value={props.radius || 0}
         onChange={props.onChangeRadius}
       />
-
       <Dropdown
         label = 'Motif'
         onChange={props.onChangeType}
         value={props.type}
         options={props.types} />
 
-        {typeControl}
+      {typeControl}
     </div>
   );
 };

@@ -1,5 +1,4 @@
-export function roundRect(ctx, x, y, w, h, radius)
-{
+export function roundRect (ctx, x, y, w, h, radius) {
   // var r = x + w;
   // var b = y + h;
   // ctx.beginPath();
@@ -15,8 +14,6 @@ export function roundRect(ctx, x, y, w, h, radius)
   // ctx.quadraticCurveTo(x, y, x+radius, y);
   //   ctx.fill()
 
-
-
   if (w < 2 * radius) radius = w / 2;
   if (h < 2 * radius) radius = h / 2;
   ctx.beginPath();
@@ -26,5 +23,5 @@ export function roundRect(ctx, x, y, w, h, radius)
   ctx.arcTo(x, y + h, x, y, radius);
   ctx.arcTo(x, y, x + w, y, radius);
   ctx.closePath();
-    ctx.fill()
+  ctx.fill();
 }
