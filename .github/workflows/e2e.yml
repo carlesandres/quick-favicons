@@ -1,0 +1,52 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: E2E
+
+on: pull_request
+
+jobs:
+  test:
+    name: test
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node: [12]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2-beta
+        with:
+          node-version: '12'
+      # - name: Get yarn cache directory path
+      #   id: yarn-cache-dir-path
+      #   run: echo "::set-output name=dir::$(yarn cache dir)"
+      # - uses: actions/cache@v2
+      #   id: yarn-cache # use this t check fo `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+      #   with:
+      #     path: '**/node_modules'
+      #     key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-yarn-
+      - run: git fetch origin master --depth=10
+      - run: git fetch origin ${{ github.ref }} --depth=10
+      - run: echo $GITHUB_HEAD_REF
+      - run: echo $CYPRESS_BASE_URL
+        env:
+          CYPRESS_BASE_URL: 'https://quick-favicons-git-${{ github.head_ref }}-carlesandres.vercel.app'
+      - run: yarn install
+      - run: yarn wait-on $CYPRESS_BASE_URL
+        env:
+          CYPRESS_BASE_URL: 'https://quick-favicons-git-${{ github.head_ref }}-carlesandres.vercel.app'
+      - run: yarn cypress run
+        env:
+          CYPRESS_BASE_URL: 'https://quick-favicons-git-${{ github.head_ref }}-carlesandres.vercel.app'
+      # - name: Archive cypress artifacts
+      #   uses: actions/upload-artifact@v2
+      #   if: ${{ always() }}
+      #   with:
+      #     name: cypress-artifiacts
+      #     path: |
+      #       cypress/screenshots
+      #       cypress/videos
+
