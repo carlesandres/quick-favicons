@@ -1,17 +1,19 @@
-import Head from 'next/head'
-import Button from 'components/Button';
+import Head from 'next/head';
 import ToolForm from 'components/ToolForm';
 import CanvasViewer from 'components/CanvasViewer';
 import { useState } from 'react';
 const types = ['letter', 'svg'];
 
-export default function Home() {
+export default function Home () {
   const [color, setColor] = useState('#333');
   const [fgcolor, setFGColor] = useState('#ffffff');
   const [letter, setLetter] = useState('t');
-  const [ radius, setRadius] = useState(100);
+  const [radius, setRadius] = useState(100);
   const [icon, setIcon] = useState();
-  const [ type, setType ] = useState(types[0]);
+  const [type, setType] = useState(types[0]);
+  const [iconPadding, setIconPadding] = useState(0);
+
+  const canvasProps = { radius, color, fgcolor, letter, icon, iconPadding, type };
 
   return (
     <div className="">
@@ -33,25 +35,20 @@ export default function Home() {
             icon={icon}
             type={type}
             types={types}
+            iconPadding={iconPadding}
             onChangeColor={setColor}
             onChangeFGColor={setFGColor}
             onChangeLetter={setLetter}
             onChangeRadius={setRadius}
             onChangeIcon={setIcon}
+            onChangeIconPadding={setIconPadding}
             onChangeType={setType}
           />
         </section>
         <section className="p-10">
-          <CanvasViewer
-            radius={radius}
-            color={color}
-            fgcolor={fgcolor}
-            letter={letter}
-            icon={icon}
-            type={type}
-          />
+          <CanvasViewer {...canvasProps} />
         </section>
       </main>
     </div>
-  )
+  );
 }

@@ -1,5 +1,5 @@
 import Dropdown from 'components/Dropdown';
-import { icons } from 'components/icons.json'
+import { icons } from 'components/icons.json';
 
 const IconsDropdown = (props) => {
   const change = (event) => {

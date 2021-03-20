@@ -1,26 +1,26 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect } from 'react';
 import { roundRect } from 'components/utils';
 
 const Canvas = props => {
-  const canvasRef = useRef(null)
-  const [ iconSVG, setIconSVG ] = useState();
+  const canvasRef = useRef(null);
+  const [iconSVG, setIconSVG] = useState();
   const [loading, setLoading] = useState(false);
 
   const draw = (ctx, color = '#333', letter = 't', radius = 0, icon, fgcolor) => {
-    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
     ctx.fillStyle = color;
     const width = ctx.canvas.width;
     const half = width / 2;
 
     const radNum = parseInt(radius, 10);
-    roundRect(ctx,0,0, width, width, radNum );
+    roundRect(ctx, 0, 0, width, width, radNum);
 
     // Draw letter
     if (props.type === 'letter') {
       ctx.fillStyle = fgcolor || 'white';
-      const fSize = half;
-      ctx.font = `bold normal ${half*1.8}px monospace`;
-      ctx.fillText(letter, half/2, 3*half / 2);
+      // const fSize = half;
+      ctx.font = `bold normal ${half * 1.8}px monospace`;
+      ctx.fillText(letter, half / 2, 3 * half / 2);
     } else if (icon) {
       const xScale = 1000 / icon.width;
       const yScale = 1000 / icon.height;
@@ -31,10 +31,10 @@ const Canvas = props => {
       ctx.fill(icon.path2D);
       ctx.setTransform(1, 0, 0, 1, 0, 0);
     }
-  }
+  };
 
   const download = () => {
-    const canvas = canvasRef.current
+    const canvas = canvasRef.current;
     const strData = canvas.toDataURL('image/png', 1.0);
 
     const name = `icon-col-${props.color}-rad-${props.radius}-letter-${props.letter}.png`;
@@ -46,11 +46,11 @@ const Canvas = props => {
   };
 
   useEffect(() => {
-    const canvas = canvasRef.current
-    const context = canvas.getContext('2d')
+    const canvas = canvasRef.current;
+    const context = canvas.getContext('2d');
 
-    draw(context, props.color, props.letter, props.radius, iconSVG, props.fgcolor)
-  }, [draw, props.color, props.letter, props.radius, iconSVG, props.fgcolor])
+    draw(context, props.color, props.letter, props.radius, iconSVG, props.fgcolor);
+  }, [draw, props.color, props.letter, props.radius, iconSVG, props.fgcolor]);
 
   useEffect(() => {
     const updateIcon = async () => {
@@ -67,8 +67,8 @@ const Canvas = props => {
         const domparser = new DOMParser();
         const ppp = domparser.parseFromString(XML, 'image/svg+xml');
         const svg = ppp.querySelector('svg');
-        const viewBox = svg && svg.getAttribute('viewBox')
-        const [ , , width, height ] = viewBox?.split(' ');
+        const viewBox = svg && svg.getAttribute('viewBox');
+        const [, , width, height] = viewBox?.split(' ');
 
         const domPath = ppp.querySelector('path');
         const path = domPath?.getAttribute('d');
@@ -82,17 +82,23 @@ const Canvas = props => {
           path2D,
           width: parseInt(width, 10),
           height: parseInt(height, 10)
-         };
+        };
 
         setIconSVG(icon);
         setLoading(false);
       } catch (err) {
-        throw err;
         setLoading(false);
+        throw err;
       }
-    }
+    };
     updateIcon();
-  }, [props.icon])
+  }, [props.icon]);
+
+  if (loading) {
+    return (
+      <p>Loading...</p>
+    );
+  }
 
   return (
     <section className="preview text-center">
@@ -124,6 +130,6 @@ const Canvas = props => {
       </div>
     </section>
   );
-}
+};
 
-export default Canvas
+export default Canvas;

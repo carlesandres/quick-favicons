@@ -1,7 +1,7 @@
 const Dropdown = (props) => {
-  const { label, value, onChange, ...other } = props;
+  const { label, value, onChange } = props;
   const name = label.replace(/ /g, '').toLowerCase();
-  const renderOptions = props.options.map( op =>  {
+  const renderOptions = props.options.map(op => {
     return (
       <option key={op}
         value={op}>{op}</option>
@@ -12,7 +12,7 @@ const Dropdown = (props) => {
     <div className="control mt-8">
       <label
         className="font-bold mr-10"
-      htmlFor={name}>{`${label}:`}</label>
+        htmlFor={name}>{`${label}:`}</label>
       <select
         defaultValue={value}
         onChange={onChange} >
