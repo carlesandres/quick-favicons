@@ -28,3 +28,18 @@ main {
   margin: 0 auto;
 }
 
+.preview canvas {
+  width: 200px !important;
+  height: 200px !important;
+  margin: 0 auto;
+}
+
+.preview path {
+  fill: blue;
+  stroke: red;
+}
+
+.preview button:hover {
+  color: white;
+  cursor: pointer;
+}

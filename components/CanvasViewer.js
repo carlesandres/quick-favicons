@@ -35,6 +35,9 @@ const Canvas = props => {
 
   const download = () => {
     const canvas = canvasRef.current;
+    if (!canvas) {
+      return null;
+    }
     const strData = canvas.toDataURL('image/png', 1.0);
 
     const name = `icon-col-${props.color}-rad-${props.radius}-letter-${props.letter}.png`;
@@ -46,6 +49,9 @@ const Canvas = props => {
   };
 
   useEffect(() => {
+    if (!canvasRef?.current) {
+      return null;
+    }
     const canvas = canvasRef.current;
     const context = canvas.getContext('2d');
 
@@ -96,39 +102,24 @@ const Canvas = props => {
 
   if (loading) {
     return (
-      <p>Loading...</p>
+			<p>Loading...</p>
     );
   }
 
+  const { iconPadding, ...canvasProps } = props;
+
   return (
-    <section className="preview text-center">
-      <style jsx>{`
-        canvas {
-          width: 200px;
-          height: 200px;
-          margin: 0 auto;
-        }
-
-        path {
-          fill: blue;
-          stroke: red;
-        }
-
-        button:hover {
-          opacity: 0.5;
-          cursor: pointer;
-        }
-      `}</style>
-      <h1 className="font-bold text-3xl mb-10">Preview</h1>
-      <canvas
-        width={1000}
-        height={1000}
-        ref={canvasRef} {...props}/>
-      <div className="mt-12">
-        <button className="p-4 border rounded bg-gray-500"
-          onClick={download}>Download</button>
-      </div>
-    </section>
+		<section className="preview text-center">
+			<h1 className="font-bold text-3xl mb-10">Preview</h1>
+			<canvas
+				width={1000}
+				height={1000}
+				ref={canvasRef} {...canvasProps}/>
+			<div className="mt-12">
+				<button className="p-4 border rounded bg-gray-500"
+					onClick={download}>Download</button>
+			</div>
+		</section>
   );
 };
 
