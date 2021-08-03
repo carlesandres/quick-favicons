@@ -2,6 +2,7 @@ import Head from 'next/head';
 import ToolForm from 'components/ToolForm';
 import CanvasViewer from 'components/CanvasViewer';
 import { useState } from 'react';
+import { icons } from 'components/icons.json';
 const types = ['letter', 'svg'];
 
 export default function Home () {
@@ -9,7 +10,7 @@ export default function Home () {
   const [fgcolor, setFGColor] = useState('#ffffff');
   const [letter, setLetter] = useState('t');
   const [radius, setRadius] = useState(100);
-  const [icon, setIcon] = useState();
+  const [icon, setIcon] = useState(icons[0]);
   const [type, setType] = useState(types[0]);
   const [iconPadding, setIconPadding] = useState(0);
 

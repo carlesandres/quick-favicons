@@ -102,24 +102,24 @@ const Canvas = props => {
 
   if (loading) {
     return (
-			<p>Loading...</p>
+      <p>Loading...</p>
     );
   }
 
   const { iconPadding, ...canvasProps } = props;
 
   return (
-		<section className="preview text-center">
-			<h1 className="font-bold text-3xl mb-10">Preview</h1>
-			<canvas
-				width={1000}
-				height={1000}
-				ref={canvasRef} {...canvasProps}/>
-			<div className="mt-12">
-				<button className="p-4 border rounded bg-gray-500"
-					onClick={download}>Download</button>
-			</div>
-		</section>
+    <section className="preview text-center">
+      <h1 className="font-bold text-3xl mb-10">Preview</h1>
+      <canvas
+        width={1000}
+        height={1000}
+        ref={canvasRef} {...canvasProps}/>
+      <div className="mt-12">
+        <button className="p-4 border rounded bg-blue-500 text-white"
+          onClick={download}>Download</button>
+      </div>
+    </section>
   );
 };
 

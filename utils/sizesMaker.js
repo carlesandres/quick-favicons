@@ -1,10 +1,10 @@
 const { flatten } = require('lodash');
 const hexToHsl = require('hex-to-hsl');
 
-const easeInOut = t => t<.5 ? 4*t*t*t : (t-1)*(2*t-2)*(2*t-2)+1;
+const easeInOut = t => t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
 
 class mosaicClass {
-  constructor(props, oCanvas, onFinishCb) {
+  constructor (props, oCanvas, onFinishCb) {
     this.s = props;
     if (!this.s.image) {
       console.error('no image'); // eslint-disable-line no-console
@@ -18,9 +18,9 @@ class mosaicClass {
       return;
     }
     if (typeof oCanvas === 'function') {
-      this.canvas = new oCanvas(width, height);
+      this.canvas = new oCanvas(width, height); // eslint-disable-line new-cap
     } else if (oCanvas) {
-      thi.canvas = oCanvas;
+      this.canvas = oCanvas;
     } else {
       console.error('problem with canvas'); // eslint-disable-line no-console
       return;
@@ -29,7 +29,7 @@ class mosaicClass {
     this.drawMosaicInCanvas();
   }
 
-  drawTranslatedRotatedImage(size, originX, originY, reverseX, reverseY, empty) {
+  drawTranslatedRotatedImage (size, originX, originY, reverseX, reverseY, empty) {
     if (!this.s.image) {
       console.error('no image'); // eslint-disable-line no-console
       return;
@@ -50,11 +50,13 @@ class mosaicClass {
     this.ctx.restore();
   }
 
-  drawGradient(options) {
+  drawGradient (options) {
     // TO-DO: Is it width or height?
     const canvasSize = this.s.image.width * this.s.rowsInMosaic;
-    const { color1 = '#333333', alpha1 = 1.0, color2 = '#ffffff', alpha2 = 1.0,
-      spanPercentage, gradientPosition, gradientTransition } = options;
+    const {
+      color1 = '#333333', alpha1 = 1.0, color2 = '#ffffff', alpha2 = 1.0,
+      spanPercentage, gradientPosition, gradientTransition
+    } = options;
 
     const hsl1 = hexToHsl(color1);
     const hsl2 = hexToHsl(color2);
@@ -72,8 +74,8 @@ class mosaicClass {
     // which had bad effect on gradients
     for (let t = 0; t <= 100; t += 2) {
       // convert linear t to "easing" t:
-      const offset = normalizedInitialPos + t/100 * spanPercentage / 100;
-      const frac1 = gradientTransition === 'easeinout' ? easeInOut(t/100) : t/100;
+      const offset = normalizedInitialPos + t / 100 * spanPercentage / 100;
+      const frac1 = gradientTransition === 'easeinout' ? easeInOut(t / 100) : t / 100;
       const frac2 = 1 - frac1;
       const h = (hsl1[0] + reverseDirectionHueDelta) * frac1 + hsl2[0] * frac2;
       const s = hsl1[1] * frac1 + hsl2[1] * frac2;
@@ -89,7 +91,7 @@ class mosaicClass {
     this.ctx.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
   }
 
-  drawMosaicInCanvas() {
+  drawMosaicInCanvas () {
     const {
       rowsInMosaic,
       colsInMosaic,
@@ -136,10 +138,10 @@ class mosaicClass {
       .map((content, index) => index * size);
 
     const arrayOfRowsToKeepClear = rowsToKeepClear.split(',')
-      .map( numStr => {
+      .map(numStr => {
         const cleanStr = numStr.trim();
         const num = parseInt(cleanStr, 10);
-        if ( Number.isInteger(num) && cleanStr === `${num}` ) {
+        if (Number.isInteger(num) && cleanStr === `${num}`) {
           return num;
         }
         return null;
@@ -153,7 +155,7 @@ class mosaicClass {
         height,
         reverseX: overallSymmetry ? numRow >= centralCol ? 1 : 0 : !(numRow % 2),
         reverseY: overallSymmetry ? 1 : !(numCol % 2),
-        empty: arrayOfRowsToKeepClear.includes(numCol+1)
+        empty: arrayOfRowsToKeepClear.includes(numCol + 1)
         // numRow < numEmptyColsBack
         // || numRow >= widths.length - numEmptyColsBack
         // || numRow > centralCol - (numEmptyColsFront + 1) && numRow < centralCol + numEmptyColsFront
