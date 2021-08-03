@@ -1,4 +1,5 @@
 import { roundRect } from 'components/utils';
+import { icons } from 'components/icons.json';
 
 export const draw = (props, ) => {
   const { ctx, color = '#333', letter = 't', radius = 0, icon, fgcolor, type } = props;

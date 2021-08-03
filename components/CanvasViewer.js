@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { draw } from 'utils/draw';
 
 const Canvas = props => {
-  const canvasRef = useRef(null);
+  const canvasRef = useRef();
   const [iconSVG, setIconSVG] = useState();
   const [loading, setLoading] = useState(false);
 
@@ -20,8 +20,6 @@ const Canvas = props => {
     link.href = strData;
     link.click();
   };
-
-  console.log('props', props);
 
   useEffect(() => {
     if (!canvasRef?.current) {
@@ -43,7 +41,6 @@ const Canvas = props => {
 
   useEffect(() => {
     const updateIcon = async () => {
-      setIconSVG();
       if (!props.icon) {
         return;
       }
@@ -67,11 +64,11 @@ const Canvas = props => {
         }
 
         const path2D = new Path2D(path);
-        const icon = {
+        const icon = Object.assign({}, {
           path2D,
           width: parseInt(width, 10),
           height: parseInt(height, 10)
-        };
+        });
 
         setIconSVG(icon);
         setLoading(false);
@@ -82,12 +79,6 @@ const Canvas = props => {
     };
     updateIcon();
   }, [props.icon]);
-
-  if (loading) {
-    return (
-      <p>Loading...</p>
-    );
-  }
 
   const { iconPadding, ...canvasProps } = props;
 
