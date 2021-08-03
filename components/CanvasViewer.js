@@ -35,9 +35,10 @@ const Canvas = props => {
       radius: props.radius,
       type: props.type,
       icon: iconSVG,
-      fgcolor: props.fgcolor
+      fgcolor: props.fgcolor,
+      padding: props.iconPadding
     });
-  }, [draw, props.color, props.letter, props.radius, props.type, iconSVG, props.fgcolor]);
+  }, [draw, props.color, props.letter, props.iconPadding, props.radius, props.type, iconSVG, props.fgcolor]);
 
   useEffect(() => {
     const updateIcon = async () => {

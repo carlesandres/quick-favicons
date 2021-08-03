@@ -35,15 +35,26 @@ const ToolForm = (props) => {
           onChange={props.onChangeFGColor}
         />
       </div>
-      <TextControl
-        label="Border-radius (1-500)"
-        type="number"
-        min="0"
-        max="500"
-        step="5"
-        value={props.radius || 0}
-        onChange={props.onChangeRadius}
-      />
+      <div className="flex mb-2">
+        <TextControl
+          label="Border-radius (1-500)"
+          type="number"
+          min="0"
+          max="500"
+          step="5"
+          value={props.radius || 0}
+          onChange={props.onChangeRadius}
+        />
+        <TextControl
+          label="Padding"
+          type="number"
+          min="0"
+          max="100"
+          step="5"
+          value={props.iconPadding}
+          onChange={props.onChangeIconPadding}
+        />
+      </div>
       <div className="flex">
         <Dropdown
           label = 'Motif'
