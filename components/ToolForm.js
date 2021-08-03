@@ -17,6 +17,8 @@ const ToolForm = (props) => {
 
   const typeControl = props.type === 'letter' ? letterControl : iconsDr;
 
+  const changeType = event => props.onChangeType(event.target.value);
+
   return (
     <div className="section text-lg bg-blue-300 p-2">
       <div className="flex mb-2">
@@ -45,7 +47,7 @@ const ToolForm = (props) => {
       <div className="flex">
         <Dropdown
           label = 'Motif'
-          onChange={props.onChangeType}
+          onChange={changeType}
           value={props.type}
           options={props.types} />
 
