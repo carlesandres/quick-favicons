@@ -21,7 +21,7 @@ const ToolForm = (props) => {
 
   return (
     <div className="section text-lg bg-blue-300 p-2">
-      <div className="flex mb-2">
+      <div className="flex mb-4">
         <TextControl
           label="BG color"
           type="color"
@@ -35,7 +35,7 @@ const ToolForm = (props) => {
           onChange={props.onChangeFGColor}
         />
       </div>
-      <div className="flex mb-2">
+      <div className="flex mb-4">
         <TextControl
           label="Border-radius (1-500)"
           type="number"
@@ -53,7 +53,7 @@ const ToolForm = (props) => {
           step="5"
           value={props.iconPadding}
           onChange={props.onChangeIconPadding}
-        />
+        />{`%`}
       </div>
       <div className="flex">
         <Dropdown

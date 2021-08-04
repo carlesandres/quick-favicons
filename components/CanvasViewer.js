@@ -85,16 +85,24 @@ const Canvas = props => {
 
   return (
     <section className="preview text-center">
-      <h1 className="font-bold text-3xl mb-10">Preview</h1>
-      <canvas
-        width={1000}
-        height={1000}
-        ref={canvasRef} {...canvasProps}/>
+      <h1 className="font-bold text-xl mb-4">Preview</h1>
+      <div className="aaa inline-block">
+        <style jsx>{`
+          .aaa {
+            background: radial-gradient(black 0px, transparent 1px);
+            background-size: 10px 10px;
+          }
+        `}</style>
+        <canvas
+          width={1000}
+          height={1000}
+          ref={canvasRef} {...canvasProps}/>
+      </div>
       <div className="mt-12">
         <button className="p-4 border rounded bg-blue-500 text-white"
           onClick={download}>Download</button>
       </div>
-    </section>
+      </section>
   );
 };
 
