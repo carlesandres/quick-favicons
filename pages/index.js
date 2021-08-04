@@ -49,6 +49,10 @@ export default function Home () {
         <section className="p-10">
           <CanvasViewer {...canvasProps} />
         </section>
+        <section className="p-10">
+          <p className="py-4"> {`Just add it to the <head> element like this:`}</p>
+          <p className="border p-4 font-mono bg-gray-100"> {`<link rel="icon" href="/path/favicon.png" sizes="1000x1000"/>`}</p>
+        </section>
       </main>
     </div>
   );
