@@ -20,7 +20,7 @@ export default function Home () {
     <div className="">
       <Head>
         <title>Quick Favicons</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.png" sizes="1000x1000"/>
       </Head>
 
       <nav>
