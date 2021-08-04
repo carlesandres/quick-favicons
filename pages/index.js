@@ -20,7 +20,7 @@ export default function Home () {
     <div className="">
       <Head>
         <title>Quick Favicons</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.png" sizes="1000x1000"/>
       </Head>
 
       <nav>
@@ -48,6 +48,10 @@ export default function Home () {
         </section>
         <section className="p-10">
           <CanvasViewer {...canvasProps} />
+        </section>
+        <section className="p-10">
+          <p className="py-4"> {`Just add it to the <head> element like this:`}</p>
+          <p className="border p-4 font-mono bg-gray-100"> {`<link rel="icon" href="/path/favicon.png" sizes="1000x1000"/>`}</p>
         </section>
       </main>
     </div>
