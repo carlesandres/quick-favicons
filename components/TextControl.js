@@ -10,8 +10,8 @@ const TextControl = (props) => {
   };
 
   return (
-    <div>
-      <label className="mr-8 font-bold"
+    <div className="mr-8">
+      <label className="mr-2 font-bold"
         htmlFor={name}>{`${label}:`}</label>
       <input
         type={type}
