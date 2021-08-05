@@ -1,9 +1,14 @@
 import { Menu } from '@headlessui/react'
 import { FiFile } from 'react-icons/fi';
 import { getAllObjects } from 'utils/localStorage';
+import { useState, useEffect } from 'react';
 
 const ConfigDropdown = (props) => {
-  const allConfigs = getAllObjects();
+  const [ allConfigs, setAllconfigs ] = useState([]);
+  useEffect( () => {
+    const configs = getAllObjects();
+    setAllconfigs(configs);
+  }, []);
 
   const menuItems = allConfigs.map( item =>
     <Menu.Item>
