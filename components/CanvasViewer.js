@@ -85,7 +85,6 @@ const Canvas = props => {
 
   return (
     <section className="preview text-center">
-      <h1 className="font-bold text-xl mb-4">Preview</h1>
       <div className="aaa inline-block">
         <style jsx>{`
           .aaa {
