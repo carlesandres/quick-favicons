@@ -23,6 +23,9 @@ export default function Home () {
       <Head>
         <title>Quick Favicons</title>
         <link rel="icon" href="/favicon.png" sizes="1000x1000"/>
+        <meta
+          name="description"
+          content="Create a favicon in seconds not minutes. Quick and simple." />
       </Head>
 
       <nav className="flex justify-between">
@@ -57,7 +60,7 @@ export default function Home () {
         </section>
         <section className="p-10">
           <p className="py-4"> {`Once dowloaded, just add it to the <head> element like this:`}</p>
-          <p className="border p-4 font-mono bg-gray-100"> {`<link rel="icon" href="/path/favicon.png" sizes="1000x1000"/>`}</p>
+          <p className="border p-4 font-mono bg-gray-100"> {`<link rel="icon" href="/path/favicon.png" type="image/png" sizes="1000x1000"/>`}</p>
         </section>
       </main>
     </div>
