@@ -26,6 +26,7 @@ export default function Home () {
         <meta
           name="description"
           content="Create a favicon in seconds not minutes. Quick and simple." />
+        <meta name="google-site-verification" content="55YTawSTZLLFaN4ftfgi-owRhc5Clh77hJ6mESPDEgE" />
       </Head>
 
       <nav className="flex justify-between">
