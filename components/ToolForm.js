@@ -20,7 +20,7 @@ const ToolForm = (props) => {
   const changeType = event => props.onChangeType(event.target.value);
 
   return (
-    <div className="section text-lg bg-blue-300 p-2">
+    <div className="section text-lg bg-blue-300 p-4 rounded">
       <div className="flex mb-4">
         <TextControl
           label="BG color"
