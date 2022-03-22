@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import TextControl from 'components/TextControl';
 import Dropdown from 'components/Dropdown';
 import IconsDropdown from 'components/IconsDropdown';
@@ -16,12 +15,11 @@ const ToolForm = (props) => {
     />;
 
   const typeControl = props.type === 'letter' ? letterControl : iconsDr;
-
   const changeType = event => props.onChangeType(event.target.value);
 
   return (
-    <div className="section text-lg bg-blue-300 p-4 rounded">
-      <div className="flex mb-4">
+    <div className="section text-lg bg-gray-300 p-4 rounded flex flex-col space-y-4">
+      <div className="flex ">
         <TextControl
           label="BG color"
           type="color"
@@ -35,7 +33,7 @@ const ToolForm = (props) => {
           onChange={props.onChangeFGColor}
         />
       </div>
-      <div className="flex mb-4">
+      <div className="flex">
         <TextControl
           label="Border-radius (1-500)"
           type="number"
@@ -57,7 +55,7 @@ const ToolForm = (props) => {
       </div>
       <div className="flex">
         <Dropdown
-          label = 'Motif'
+          label = 'Type'
           onChange={changeType}
           value={props.type}
           options={props.types} />

@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { draw } from 'utils/draw';
+import { createSvgFromIcon } from 'utils/createSvgFromIcon';
 
 const Canvas = props => {
   const canvasRef = useRef();
@@ -28,8 +29,6 @@ const Canvas = props => {
     const canvas = canvasRef.current;
     const context = canvas.getContext('2d');
 
-    console.log(props.radius);
-
     draw({
       ctx: context,
       color: props.color,
@@ -50,34 +49,11 @@ const Canvas = props => {
 
       setLoading(true);
       try {
-        const imgUrl = `icons/${props.icon}.svg`;
-        const resp = await fetch(imgUrl);
-        const XML = await resp.text();
-        const domparser = new DOMParser();
-        const ppp = domparser.parseFromString(XML, 'image/svg+xml');
-        const svg = ppp.querySelector('svg');
-        const viewBox = svg && svg.getAttribute('viewBox');
-        const [, , width, height] = viewBox?.split(' ');
-
-        const domPath = ppp.querySelector('path');
-        const path = domPath?.getAttribute('d');
-        if (!path) {
-          setLoading(false);
-          return;
-        }
-
-        const path2D = new Path2D(path);
-        const icon = Object.assign({}, {
-          path2D,
-          width: parseInt(width, 10),
-          height: parseInt(height, 10)
-        });
-
-        setIconSVG(icon);
+        const svg = await createSvgFromIcon(props.icon);
         setLoading(false);
+        setIconSVG(svg);
       } catch (err) {
         setLoading(false);
-        throw err;
       }
     };
     updateIcon();
@@ -87,9 +63,9 @@ const Canvas = props => {
 
   return (
     <section className="preview text-center">
-      <div className="aaa inline-block">
+      <div className="canvas-container inline-block">
         <style jsx>{`
-          .aaa {
+          .canvas-container {
             background: radial-gradient(black 0px, transparent 1px);
             background-size: 10px 10px;
           }
@@ -100,7 +76,8 @@ const Canvas = props => {
           ref={canvasRef} {...canvasProps}/>
       </div>
       <div className="mt-12">
-        <button className="p-4 border rounded bg-blue-500 text-white"
+        <button className="p-2 border rounded bg-blue-400 
+          hover:bg-blue-500 text-white"
           onClick={download}>Download</button>
       </div>
       </section>

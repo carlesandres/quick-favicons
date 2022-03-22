@@ -29,14 +29,14 @@ export default function Home () {
         <meta name="google-site-verification" content="55YTawSTZLLFaN4ftfgi-owRhc5Clh77hJ6mESPDEgE" />
       </Head>
 
-      <nav className="flex justify-between">
+      <nav className="p-4 bg-gray-700 text-white flex justify-between">
         <div>Quick Favicons</div>
         <div className="flex space-x-4">
           <SaveCurrentConfig canvasProps={canvasProps}/>
           <ConfigDropdown />
         </div>
       </nav>
-      <main>
+      <main className="max-w-4xl mx-auto">
         <section className="p-10">
           <ToolForm
             color={color}
