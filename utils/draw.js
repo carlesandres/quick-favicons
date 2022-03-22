@@ -12,7 +12,6 @@ export const draw = (props, ) => {
   const half = width / 2;
 
   const radNum = parseInt(radius, 10);
-  console.log('radNum', radNum);
 
   const reductionFactor = (100 - 2 * padding)/100;
   const iconWidth = width * reductionFactor;

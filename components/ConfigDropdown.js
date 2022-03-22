@@ -10,8 +10,6 @@ const ConfigDropdown = () => {
     setAllconfigs(configs);
   }, []);
 
-  console.log('allConfigs', allConfigs);
-
   const menuItems = allConfigs?.length ? allConfigs.map( item =>
     <Menu.Item key={item.id}>
       <a> {item.id || '(unknown id)'}</a>
