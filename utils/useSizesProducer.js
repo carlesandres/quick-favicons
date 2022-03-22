@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import bitmapToBlob from 'utils/bmpToBlob';
 
-export const sizesProducer = props => {
+export const useSizesProducer = props => {
   const [worker, setWorker] = useState(null);
   const [outImageBmp, setOutimagebmp] = useState();
   const [outImageBlob, setOutimageblob] = useState();

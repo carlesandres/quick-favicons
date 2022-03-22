@@ -11,7 +11,7 @@ const ConfigDropdown = (props) => {
   }, []);
 
   const menuItems = allConfigs.map( item =>
-    <Menu.Item>
+    <Menu.Item key={item.id}>
       <a> {item.id || '(unknown id)'}</a>
     </Menu.Item>
   );
