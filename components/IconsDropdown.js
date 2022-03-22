@@ -1,5 +1,5 @@
 import Dropdown from 'components/Dropdown';
-import { icons } from 'components/icons.json';
+import icons from 'components/icons.json';
 
 const IconsDropdown = (props) => {
   const change = (event) => {
@@ -9,7 +9,7 @@ const IconsDropdown = (props) => {
   return (
     <Dropdown
       label="icons"
-      options={icons}
+      options={icons.icons}
       value={props.icon}
       onChange={change}
     />

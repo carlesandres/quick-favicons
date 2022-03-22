@@ -4,7 +4,7 @@ import CanvasViewer from 'components/CanvasViewer';
 import SaveCurrentConfig from 'components/SaveCurrentConfig';
 import ConfigDropdown from 'components/ConfigDropdown';
 import { useState } from 'react';
-import { icons } from 'components/icons.json';
+import icons from 'components/icons.json';
 const types = ['letter', 'svg'];
 
 export default function Home () {
@@ -12,7 +12,7 @@ export default function Home () {
   const [fgcolor, setFGColor] = useState('#ffffff');
   const [letter, setLetter] = useState('t');
   const [radius, setRadius] = useState(100);
-  const [icon, setIcon] = useState(icons[0]);
+  const [icon, setIcon] = useState(icons.icons[0]);
   const [type, setType] = useState(types[0]);
   const [iconPadding, setIconPadding] = useState(0);
 
