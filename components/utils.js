@@ -16,6 +16,7 @@ export function roundRect (ctx, x, y, w, h, radius) {
 
   if (w < 2 * radius) radius = w / 2;
   if (h < 2 * radius) radius = h / 2;
+  console.log('radius', radius);
   ctx.beginPath();
   ctx.moveTo(x + radius, y);
   ctx.arcTo(x + w, y, x + w, y + h, radius);
