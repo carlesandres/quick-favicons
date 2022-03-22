@@ -28,6 +28,8 @@ const Canvas = props => {
     const canvas = canvasRef.current;
     const context = canvas.getContext('2d');
 
+    console.log(props.radius);
+
     draw({
       ctx: context,
       color: props.color,
