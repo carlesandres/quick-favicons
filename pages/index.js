@@ -8,21 +8,18 @@ import icons from 'components/icons.json';
 const types = ['letter', 'svg'];
 
 const defaultConfig = {
-  color: '#333',
+  color: '#333333',
   fgcolor: '#ffffff',
   letter: 'a',
   radius: 100,
   icon: icons.icons[0],
   type: types[0],
-  padding: 0
+  iconPadding: 0,
+  noBackground: false
 };
 
 export default function Home () {
   const [config, setConfig ] = useState(defaultConfig);
-
-  const canvasProps = { radius: config.radius, color: config.color, 
-    fgcolor: config.fgcolor, letter: config.letter, icon: config.icon, 
-    iconPadding: config.padding, type: config.type };
 
   return (
     <div className="">
@@ -38,7 +35,7 @@ export default function Home () {
       <nav className="p-4 bg-gray-700 text-white flex justify-between">
         <div>Quick Favicons</div>
         <div className="flex space-x-4">
-          <SaveCurrentConfig canvasProps={canvasProps}/>
+          <SaveCurrentConfig canvasProps={config}/>
           <ConfigDropdown />
         </div>
       </nav>
@@ -51,7 +48,7 @@ export default function Home () {
           />
         </section>
         <section className="p-10">
-          <CanvasViewer {...canvasProps} />
+          <CanvasViewer {...config} />
         </section>
         <section className="p-10">
           <p className="py-4"> {`Once dowloaded, just add it to the <head> element like this:`}</p>
