@@ -17,7 +17,9 @@ export const draw = (props, ) => {
   const iconWidth = width * reductionFactor;
   const topCorner = width * padding / 100;
 
-  roundRect(ctx, topCorner, topCorner, iconWidth, iconWidth, radNum);
+  if (!props.noBackground) {
+    roundRect(ctx, topCorner, topCorner, iconWidth, iconWidth, radNum);
+  }
 
   // Draw letter
   if (type === 'letter') {

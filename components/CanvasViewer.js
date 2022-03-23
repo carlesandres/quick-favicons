@@ -37,9 +37,10 @@ const Canvas = props => {
       type: props.type,
       icon: iconSVG,
       fgcolor: props.fgcolor,
-      padding: props.iconPadding
+      padding: props.iconPadding,
+      noBackground: props.noBackground
     });
-  }, [props.color, props.letter, props.iconPadding, props.radius, props.type, iconSVG, props.fgcolor]);
+  }, [props.color, props.noBackground, props.letter, props.iconPadding, props.radius, props.type, iconSVG, props.fgcolor]);
 
   useEffect(() => {
     const updateIcon = async () => {
@@ -59,7 +60,7 @@ const Canvas = props => {
     updateIcon();
   }, [props.icon]);
 
-  const { iconPadding, ...canvasProps } = props;
+  const { iconPadding, noBackground, ...canvasProps } = props;
 
   return (
     <section className="preview text-center">

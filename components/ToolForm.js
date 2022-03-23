@@ -5,14 +5,14 @@ import IconsDropdown from 'components/IconsDropdown';
 const ToolForm = (props) => {
   const { config, onChange } = props;
 
-
   const onChangeBGColor = color =>  onChange({ ...config, color }); 
   const onChangeFGColor = fgcolor =>  onChange({ ...config, fgcolor });
   const onChangeLetter = letter => { onChange({ ...config, letter }); };
   const onChangeIcon = icon => { onChange({ ...config, icon }); };
   const onChangeRadius = radius => { onChange({ ...config, radius }); };
-  const onChangeIconPadding = padding => { onChange({ ...config, padding }); };
+  const onChangeIconPadding = iconPadding => { onChange({ ...config, iconPadding }); };
   const onChangeType = event => onChange({ ...config, type:event.target.value});
+  const onChangeNoBg = event => onChange({ ...config, noBackground:event.target.checked});
 
   const iconsDr = <IconsDropdown
     value={config.icon}
@@ -43,6 +43,14 @@ const ToolForm = (props) => {
           value={config.fgcolor}
           onChange={onChangeFGColor}
         />
+        <div className="flex items-center">
+        <input 
+          type="checkbox" 
+          value={config.noBackground} 
+          onChange={onChangeNoBg}
+          />
+          <span>No background
+          </span>        </div>
       </div>
       <div className="flex">
         <TextControl
@@ -60,7 +68,7 @@ const ToolForm = (props) => {
           min="0"
           max="100"
           step="5"
-          value={config.padding}
+          value={config.iconPadding}
           onChange={onChangeIconPadding}
         />{`%`}
       </div>
