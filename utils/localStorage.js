@@ -5,7 +5,6 @@ const STORE_KEY = 'quick-favicons'
 export const getAllObjects = () => {
   const allString = localStorage.getItem('STORE_KEY') || '[]';
   const all = JSON.parse(allString);
-  console.log('all', all);
   return all;
 }
 
