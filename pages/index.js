@@ -7,16 +7,22 @@ import { useState } from 'react';
 import icons from 'components/icons.json';
 const types = ['letter', 'svg'];
 
-export default function Home () {
-  const [color, setColor] = useState('#333');
-  const [fgcolor, setFGColor] = useState('#ffffff');
-  const [letter, setLetter] = useState('t');
-  const [radius, setRadius] = useState(100);
-  const [icon, setIcon] = useState(icons.icons[0]);
-  const [type, setType] = useState(types[0]);
-  const [iconPadding, setIconPadding] = useState(0);
+const defaultConfig = {
+  color: '#333',
+  fgcolor: '#ffffff',
+  letter: 'a',
+  radius: 100,
+  icon: icons.icons[0],
+  type: types[0],
+  padding: 0
+};
 
-  const canvasProps = { radius, color, fgcolor, letter, icon, iconPadding, type };
+export default function Home () {
+  const [config, setConfig ] = useState(defaultConfig);
+
+  const canvasProps = { radius: config.radius, color: config.color, 
+    fgcolor: config.fgcolor, letter: config.letter, icon: config.icon, 
+    iconPadding: config.padding, type: config.type };
 
   return (
     <div className="">
@@ -39,21 +45,9 @@ export default function Home () {
       <main className="max-w-4xl mx-auto">
         <section className="p-10">
           <ToolForm
-            color={color}
-            fgcolor={fgcolor}
-            letter={letter}
-            radius={radius}
-            icon={icon}
-            type={type}
+            config={config}
+            onChange={setConfig}
             types={types}
-            iconPadding={iconPadding}
-            onChangeColor={setColor}
-            onChangeFGColor={setFGColor}
-            onChangeLetter={setLetter}
-            onChangeRadius={setRadius}
-            onChangeIcon={setIcon}
-            onChangeIconPadding={setIconPadding}
-            onChangeType={setType}
           />
         </section>
         <section className="p-10">

@@ -12,7 +12,6 @@ const IconsDropdown = (props) => {
           return icon.toLowerCase().includes(query.toLowerCase())
         })
 
-
   return (
     <Combobox 
       as="div"
