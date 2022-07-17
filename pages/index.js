@@ -22,6 +22,10 @@ const defaultConfig = {
 export default function Home () {
   const [config, setConfig ] = useState(defaultConfig);
 
+  const onLoadConfig = newConfig => {
+    setConfig( {...config, ...newConfig});
+  };
+
   return (
     <div className="">
       <Head>
@@ -37,7 +41,7 @@ export default function Home () {
         <div>Quick Favicons</div>
         <div className="flex space-x-4">
           <SaveCurrentConfig canvasProps={config}/>
-          <ConfigDropdown />
+          <ConfigDropdown onLoad={onLoadConfig}/>
         </div>
       </nav>
       <main className="max-w-4xl mx-auto">

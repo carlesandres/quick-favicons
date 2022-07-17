@@ -1,7 +1,5 @@
 import { nanoid } from 'nanoid';
 
-const STORE_KEY = 'quick-favicons'
-
 export const getAllObjects = () => {
   const allString = localStorage.getItem('STORE_KEY') || '[]';
   const all = JSON.parse(allString);
@@ -33,6 +31,7 @@ export const loadObject = id => {
       console.warn(`No object found with id: ${id}`);
       return;
     }
+    console.log('myObj', myObj);
     return myObj;
   } catch (err) {
     console.warn('Error retrieving object');
