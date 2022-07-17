@@ -27,7 +27,7 @@ const ToolForm = (props) => {
       onChange={onChangeLetter}
     />;
 
-  const typeControl = props.type === 'letter' ? letterControl : iconsDr;
+  const typeControl = config.type === 'letter' ? letterControl : iconsDr;
 
   return (
     <div className="section text-lg bg-gray-300 p-4 rounded flex flex-col space-y-4">

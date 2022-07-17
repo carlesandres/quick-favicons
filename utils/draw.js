@@ -15,29 +15,22 @@ export const draw = (props) => {
   const radNum = parseInt(radius, 10);
 
   const reductionFactor = (100 - 2 * padding)/100;
-  console.log('reductionFactor', reductionFactor);
-  console.log('100*reductionFactor', 100*reductionFactor);
-  console.log('motifPadding', motifPadding);
-  const motifReductionFactor = ((100*reductionFactor) - 2 * motifPadding)/(100*reductionFactor);
-  console.log('motifReductionFactor', motifReductionFactor);
   const iconWidth = width * reductionFactor;
   const topCorner = width * padding / 100;
-  const motifTopCorner = iconWidth*motifPadding/100;
 
-  console.log('padding', padding);
-  console.log('topCorner', topCorner);
-  console.log('motifTopCorner', motifTopCorner);
-  
   if (!props.noBackground) {
     roundRect(ctx, topCorner, topCorner, iconWidth, iconWidth, radNum);
   }
+
+  const motifReductionFactor = ((100*reductionFactor) - 2 * motifPadding)/(100*reductionFactor);
+  const motifWidth = width * motifReductionFactor;
+  const motifTopCorner = (width - motifWidth)/2;
 
   // Draw motif
   if (type === 'letter') {
     ctx.translate(motifTopCorner, motifTopCorner);
     ctx.scale(motifReductionFactor, motifReductionFactor)
     ctx.fillStyle = fgcolor || 'white';
-    // const fSize = half;
     ctx.font = `bold normal ${half * 1.8}px monospace`;
     ctx.fillText(letter, half / 2, 3 * half / 2);
     ctx.setTransform(1, 0, 0, 1, 0, 0);
