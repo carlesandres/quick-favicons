@@ -5,7 +5,7 @@ import { createSvgFromIcon } from 'utils/createSvgFromIcon';
 const Canvas = props => {
   const canvasRef = useRef();
   const [iconSVG, setIconSVG] = useState();
-  const [loading, setLoading] = useState(false);
+  const [, setLoading] = useState(false);
 
   const download = () => {
     const canvas = canvasRef.current;
@@ -67,7 +67,7 @@ const Canvas = props => {
     updateIcon();
   }, [props.icon]);
 
-  const { iconPadding, noBackground, ...canvasProps } = props;
+  const { iconPadding, motifPadding, noBackground, ...canvasProps } = props;
 
   return (
     <section className="preview text-center">
