@@ -11,6 +11,7 @@ const ToolForm = (props) => {
   const onChangeIcon = icon => { onChange({ ...config, icon }); };
   const onChangeRadius = radius => { onChange({ ...config, radius }); };
   const onChangeIconPadding = iconPadding => { onChange({ ...config, iconPadding }); };
+  const onChangeMotifPadding = motifPadding => { onChange({ ...config, motifPadding }); };
   const onChangeType = event => onChange({ ...config, type:event.target.value});
   const onChangeNoBg = event => onChange({ ...config, noBackground:event.target.checked});
 
@@ -63,14 +64,23 @@ const ToolForm = (props) => {
           onChange={onChangeRadius}
         />
         <TextControl
-          label="Padding"
+          label="Padding %"
           type="number"
           min="0"
           max="100"
           step="5"
           value={config.iconPadding}
           onChange={onChangeIconPadding}
-        />{`%`}
+        />
+        <TextControl
+          label="Motif padding %"
+          type="number"
+          min="0"
+          max="100"
+          step="5"
+          value={config.motifPadding}
+          onChange={onChangeMotifPadding}
+        />
       </div>
       <div className="flex">
         <Dropdown

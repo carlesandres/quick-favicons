@@ -15,6 +15,7 @@ const defaultConfig = {
   icon: icons.icons[0],
   type: types[0],
   iconPadding: 0,
+  motifPadding: 10,
   noBackground: false
 };
 
