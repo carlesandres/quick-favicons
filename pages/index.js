@@ -1,10 +1,13 @@
 import Head from 'next/head';
+import Image from 'next/image';
 import ToolForm from 'components/ToolForm';
 import CanvasViewer from 'components/CanvasViewer';
 import SaveCurrentConfig from 'components/SaveCurrentConfig';
 import ConfigDropdown from 'components/ConfigDropdown';
 import { useState } from 'react';
 import icons from 'components/icons.json';
+import logo from '../public/favicon.png';
+
 const types = ['character', 'svg'];
 
 const defaultConfig = {
@@ -38,7 +41,12 @@ export default function Home () {
       </Head>
 
       <nav className="p-4 bg-gray-700 text-white flex justify-between">
-        <div>Quick Favicons</div>
+        <div className="flex space-x-2">
+          <div className="h-6 w-6">
+            <Image src={logo} /> 
+          </div>
+          <div>Quick Favicons</div>
+        </div>
         <div className="flex space-x-4">
           <SaveCurrentConfig canvasProps={config}/>
           <ConfigDropdown onLoad={onLoadConfig}/>
@@ -55,10 +63,6 @@ export default function Home () {
         <main className="max-w-4xl mx-auto">
           <section className="p-10">
             <CanvasViewer {...config} />
-          </section>
-          <section className="p-10">
-            <p className="py-4"> {`Once dowloaded, just add it to the <head> element like this:`}</p>
-            <p className="border p-4 font-mono bg-gray-100"> {`<link rel="icon" href="/path/favicon.png" type="image/png" sizes="1000x1000"/>`}</p>
           </section>
         </main>
       </div>
