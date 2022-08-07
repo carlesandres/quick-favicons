@@ -27,7 +27,7 @@ export default function Home () {
   };
 
   return (
-    <div className="">
+    <div className="min-h-screen flex flex-col">
       <Head>
         <title>Quick Favicons</title>
         <link rel="icon" href="/favicon.png" sizes="1000x1000"/>
@@ -44,22 +44,24 @@ export default function Home () {
           <ConfigDropdown onLoad={onLoadConfig}/>
         </div>
       </nav>
-      <main className="max-w-4xl mx-auto">
-        <section className="p-10">
+      <div className="flex flex-1">
+        <aside className="">
           <ToolForm
             config={config}
             onChange={setConfig}
             types={types}
-          />
-        </section>
-        <section className="p-10">
-          <CanvasViewer {...config} />
-        </section>
-        <section className="p-10">
-          <p className="py-4"> {`Once dowloaded, just add it to the <head> element like this:`}</p>
-          <p className="border p-4 font-mono bg-gray-100"> {`<link rel="icon" href="/path/favicon.png" type="image/png" sizes="1000x1000"/>`}</p>
-        </section>
-      </main>
+            />
+        </aside>
+        <main className="max-w-4xl mx-auto">
+          <section className="p-10">
+            <CanvasViewer {...config} />
+          </section>
+          <section className="p-10">
+            <p className="py-4"> {`Once dowloaded, just add it to the <head> element like this:`}</p>
+            <p className="border p-4 font-mono bg-gray-100"> {`<link rel="icon" href="/path/favicon.png" type="image/png" sizes="1000x1000"/>`}</p>
+          </section>
+        </main>
+      </div>
     </div>
   );
 }

@@ -25,13 +25,14 @@ const ToolForm = (props) => {
       label="Letter"
       value={config.letter || ''}
       onChange={onChangeLetter}
+      maxLength={1}
+      className="w-6 text-center rouded-sm p-1"
     />;
 
   const typeControl = config.type === 'letter' ? letterControl : iconsDr;
 
   return (
-    <div className="section text-lg bg-gray-300 p-4 rounded flex flex-col space-y-4">
-      <div className="flex ">
+    <div className="text-lg bg-gray-300 p-4 h-full flex flex-col space-y-4">
         <TextControl
           label="BG color"
           type="color"
@@ -50,10 +51,8 @@ const ToolForm = (props) => {
           value={config.noBackground} 
           onChange={onChangeNoBg}
           />
-          <span>No background
+          <span className="ml-2">No background
           </span>        </div>
-      </div>
-      <div className="flex">
         <TextControl
           label="Border-radius (1-500)"
           type="number"
@@ -64,7 +63,7 @@ const ToolForm = (props) => {
           onChange={onChangeRadius}
         />
         <TextControl
-          label="Padding %"
+          label="Outer Padding %"
           type="number"
           min="0"
           max="100"
@@ -73,7 +72,7 @@ const ToolForm = (props) => {
           onChange={onChangeIconPadding}
         />
         <TextControl
-          label="Motif padding %"
+          label="Motif Padding %"
           type="number"
           min="0"
           max="100"
@@ -81,8 +80,6 @@ const ToolForm = (props) => {
           value={config.motifPadding}
           onChange={onChangeMotifPadding}
         />
-      </div>
-      <div className="flex">
         <Dropdown
           label = 'Type'
           onChange={onChangeType}
@@ -90,7 +87,6 @@ const ToolForm = (props) => {
           options={props.types} />
 
         {typeControl}
-      </div>
     </div>
   );
 };
