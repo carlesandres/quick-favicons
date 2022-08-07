@@ -28,14 +28,14 @@ const ConfigDropdown = (props) => {
       <button 
         data-item-id={item.id}
         onClick={loadItem}
-      className="hover:text-gray-200">{`Item ${index+1}`}</button>
+      className="hover:text-blue-300">{`Item ${index+1}`}</button>
     </Menu.Item>
   ): <p>No configs saved yet</p>;
 
   return (
-    <Menu as="div" className="relative flex items-center">
-      <Menu.Button><FiFile /></Menu.Button>
-      <Menu.Items className="absolute right-0 top-6 w-56 mt-2 z-10 
+    <Menu as="div" className="relative flex items-center transition-all">
+      <Menu.Button className="hover:text-blue-300"><FiFile /></Menu.Button>
+      <Menu.Items className="absolute -right-2 top-8 w-56 mt-2 z-10 
         origin-top-right flex flex-col bg-gray-500 space-y-2
         p-4 text-base rounded-sm">
         {menuItems}

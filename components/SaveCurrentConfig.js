@@ -7,7 +7,7 @@ const SaveCurrentConfig = (props) => {
   }
 
   return (
-      <button className="hover:bg-blue-600 "
+      <button className="hover:text-blue-300 "
         onClick={save}><FiSave /></button>
   );
 };

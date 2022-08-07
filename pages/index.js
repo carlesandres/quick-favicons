@@ -5,7 +5,7 @@ import SaveCurrentConfig from 'components/SaveCurrentConfig';
 import ConfigDropdown from 'components/ConfigDropdown';
 import { useState } from 'react';
 import icons from 'components/icons.json';
-const types = ['letter', 'svg'];
+const types = ['character', 'svg'];
 
 const defaultConfig = {
   color: '#333333',

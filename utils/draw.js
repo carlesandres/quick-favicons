@@ -27,7 +27,7 @@ export const draw = (props) => {
   const motifTopCorner = (width - motifWidth)/2;
 
   // Draw motif
-  if (type === 'letter') {
+  if (type === 'character') {
     ctx.translate(motifTopCorner, motifTopCorner);
     ctx.scale(motifReductionFactor, motifReductionFactor)
     ctx.fillStyle = fgcolor || 'white';
