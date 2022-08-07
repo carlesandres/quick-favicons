@@ -9,13 +9,14 @@ const Dropdown = (props) => {
   });
 
   return (
-    <div className="control mr-4">
+    <div className="flex space-x-2">
       <label
-        className="font-bold mr-2"
+        className=""
         htmlFor={name}>{`${label}:`}</label>
       <select
         defaultValue={value}
-        onChange={onChange} >
+        onChange={onChange} 
+        className="rounded-sm p-1">
         {renderOptions}
       </select>
     </div>

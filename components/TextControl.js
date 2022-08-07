@@ -10,14 +10,15 @@ const TextControl = (props) => {
   };
 
   return (
-    <div className="mr-8">
-      <label className="mr-2 font-bold"
+    <div className="flex items-center space-x-2">
+      <label className=""
         htmlFor={name}>{`${label}:`}</label>
       <input
         type={type}
         name={name}
         onChange={change}
         value={value}
+        className="p-1 rounded-sm"
         {...other}
       />
     </div>
