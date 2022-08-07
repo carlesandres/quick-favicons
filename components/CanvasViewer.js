@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { draw } from 'utils/draw';
 import { createSvgFromIcon } from 'utils/createSvgFromIcon';
+import InfoTooltip from 'components/InfoTooltip';
 
 const Canvas = props => {
   const canvasRef = useRef();
@@ -42,11 +43,11 @@ const Canvas = props => {
       noBackground: props.noBackground
     });
   }, [
-    props.color, 
-    props.noBackground, 
-    props.letter, props.iconPadding, 
-    props.motifPadding,
-    props.radius, props.type, iconSVG, props.fgcolor]);
+      props.color, 
+      props.noBackground, 
+      props.letter, props.iconPadding, 
+      props.motifPadding,
+      props.radius, props.type, iconSVG, props.fgcolor]);
 
 
   useEffect(() => {
@@ -73,22 +74,29 @@ const Canvas = props => {
     <section className="preview text-center">
       <div className="canvas-container inline-block">
         <style jsx>{`
-          .canvas-container {
-            background: radial-gradient(#999 0px, transparent 1px);
-            background-size: 5px 5px;
-          }
-        `}</style>
+.canvas-container {
+background: radial-gradient(#999 0px, transparent 1px);
+background-size: 5px 5px;
+}
+`}</style>
         <canvas
           width={1000}
           height={1000}
           ref={canvasRef} {...canvasProps}/>
       </div>
-      <div className="mt-12">
-        <button className="p-2 border rounded bg-blue-400 
-          hover:bg-blue-500 text-white"
+      <div className="flex space-x-2 mt-12 items-center justify-center">
+        <button className="p-2 border rounded bg-blue-500 
+          hover:bg-blue-600 text-white transition"
           onClick={download}>Download</button>
+        <InfoTooltip>
+          <p className="py-4"> Once downloaded, add it to the 
+            <i> {`<head>`} </i>
+            element of your site like this:
+          </p>
+          <p className="border p-4 font-mono bg-gray-100"> {`<link rel="icon" href="/path/favicon.png" type="image/png" sizes="1000x1000"/>`}</p>
+        </InfoTooltip>
       </div>
-      </section>
+    </section>
   );
 };
 
