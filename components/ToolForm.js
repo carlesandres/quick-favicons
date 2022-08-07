@@ -22,14 +22,14 @@ const ToolForm = (props) => {
 
   const letterControl =
     <TextControl
-      label="Letter"
+      label="Character"
       value={config.letter || ''}
       onChange={onChangeLetter}
       maxLength={1}
-      className="w-6 text-center rouded-sm p-1"
+      className="w-8 text-center rounded-sm p-1"
     />;
 
-  const typeControl = config.type === 'letter' ? letterControl : iconsDr;
+  const typeControl = config.type === 'character' ? letterControl : iconsDr;
 
   return (
     <div className="text-lg bg-gray-300 p-4 h-full flex flex-col space-y-4">
