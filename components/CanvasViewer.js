@@ -74,8 +74,8 @@ const Canvas = props => {
       <div className="canvas-container inline-block">
         <style jsx>{`
           .canvas-container {
-            background: radial-gradient(black 0px, transparent 1px);
-            background-size: 10px 10px;
+            background: radial-gradient(#999 0px, transparent 1px);
+            background-size: 5px 5px;
           }
         `}</style>
         <canvas
