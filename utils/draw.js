@@ -14,15 +14,16 @@ export const draw = (props) => {
 
   const radNum = parseInt(radius, 10);
 
-  const reductionFactor = (100 - 2 * padding)/100;
-  const iconWidth = width * reductionFactor;
+  const outerReductionFactor = (100 - 2 * padding)/100;
+  const iconWidth = width * outerReductionFactor;
   const topCorner = width * padding / 100;
 
   if (!props.noBackground) {
     roundRect(ctx, topCorner, topCorner, iconWidth, iconWidth, radNum);
   }
 
-  const motifReductionFactor = ((100*reductionFactor) - 2 * motifPadding)/(100*reductionFactor);
+  const innerReductionFactor = (100 - 2 * motifPadding)/100;
+  const motifReductionFactor = outerReductionFactor * innerReductionFactor;
   const motifWidth = width * motifReductionFactor;
   const motifTopCorner = (width - motifWidth)/2;
 
