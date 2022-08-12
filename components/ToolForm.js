@@ -32,7 +32,8 @@ const ToolForm = (props) => {
   const typeControl = config.type === 'character' ? letterControl : iconsDr;
 
   return (
-    <div className="text-lg bg-gray-300 p-4 h-full flex flex-col space-y-4">
+    <div className="text-sm bg-gray-300 p-6 h-full flex 
+      flex-col space-y-4">
         <TextControl
           label="BG color"
           type="color"
