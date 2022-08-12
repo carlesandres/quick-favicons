@@ -9,7 +9,7 @@ const Dropdown = (props) => {
   });
 
   return (
-    <div className="flex space-x-2">
+    <div className="flex space-x-2 items-center">
       <label
         className=""
         htmlFor={name}>{`${label}:`}</label>
