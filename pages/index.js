@@ -44,14 +44,15 @@ export default function Home () {
           <div className="h-6 w-6">
             <Image src={logo} /> 
           </div>
-          <div>Quick Favicons</div>
+          <span>Quick Favicons</span>
+          <span className="italic text-yellow-100">- Create a favicon in seconds, not minutes</span>
         </div>
         <div className="flex space-x-4">
           <SaveCurrentConfig canvasProps={config}/>
           <ConfigDropdown onLoad={onLoadConfig}/>
         </div>
       </nav>
-      <div className="flex flex-1">
+      <div className="flex flex-col sm:flex-row flex-1">
         <aside className="">
           <ToolForm
             config={config}
@@ -60,9 +61,6 @@ export default function Home () {
             />
         </aside>
         <main className="max-w-4xl mx-auto">
-          <p className="text-gray-500 pt-8 sm:pt-24">
-          Create a favicon in seconds, not minutes.
-          </p>
           <section className="mt-10 sm:mt-20">
             <CanvasViewer {...config} />
           </section>
