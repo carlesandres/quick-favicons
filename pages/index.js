@@ -60,9 +60,6 @@ export default function Home () {
             />
         </aside>
         <main className="max-w-4xl mx-auto">
-          <p className="text-gray-500 pt-8 sm:pt-24">
-          Create a favicon in seconds, not minutes.
-          </p>
           <section className="mt-10 sm:mt-20">
             <CanvasViewer {...config} />
           </section>
