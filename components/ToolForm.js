@@ -5,7 +5,7 @@ import IconsDropdown from 'components/IconsDropdown';
 const ToolForm = (props) => {
   const { config, onChange } = props;
 
-  const onChangeBGColor = color =>  onChange({ ...config, color }); 
+  const onChangeBGColor = color =>  onChange({ ...config, color });
   const onChangeFGColor = fgcolor =>  onChange({ ...config, fgcolor });
   const onChangeLetter = letter => { onChange({ ...config, letter }); };
   const onChangeIcon = icon => { onChange({ ...config, icon }); };
@@ -32,7 +32,7 @@ const ToolForm = (props) => {
   const typeControl = config.type === 'character' ? letterControl : iconsDr;
 
   return (
-    <div className="text-sm bg-gray-300 p-6 h-full flex 
+    <div className="text-sm bg-gray-300 p-6 h-full flex
       flex-col space-y-4">
         <TextControl
           label="BG color"
@@ -47,13 +47,15 @@ const ToolForm = (props) => {
           onChange={onChangeFGColor}
         />
         <div className="flex items-center">
-        <input 
-          type="checkbox" 
-          value={config.noBackground} 
+        <input
+          type="checkbox"
+          id="no-background"
+          value={config.noBackground}
           onChange={onChangeNoBg}
           />
-          <span className="ml-2">No background
-          </span>        </div>
+          <label htmlFor="no-background" className="ml-2">No background
+          </label>
+      </div>
         <TextControl
           label="Border-radius (1-500)"
           type="number"

@@ -5,7 +5,6 @@ import CanvasViewer from 'components/CanvasViewer';
 import SaveCurrentConfig from 'components/SaveCurrentConfig';
 import ConfigDropdown from 'components/ConfigDropdown';
 import { useState } from 'react';
-import icons from 'components/icons.json';
 import logo from '../public/favicon.png';
 
 const types = ['character', 'svg'];
@@ -15,7 +14,7 @@ const defaultConfig = {
   fgcolor: '#ffffff',
   letter: 'a',
   radius: 100,
-  icon: icons.icons[0],
+  icon: null,
   type: types[0],
   iconPadding: 0,
   motifPadding: 10,

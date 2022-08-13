@@ -14,6 +14,7 @@ const Dropdown = (props) => {
         className=""
         htmlFor={name}>{`${label}:`}</label>
       <select
+        id={name}
         defaultValue={value}
         onChange={onChange} 
         className="rounded-sm p-1">
