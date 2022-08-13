@@ -37,3 +37,19 @@ export const loadObject = id => {
     console.warn('Error retrieving object');
   }
 }
+
+export const removeObject = (objId) => {
+  try {
+    const all = getAllObjects();
+    const clonedAllConfigs = [ ...all ];
+    const index = clonedAllConfigs.findIndex(c => c.id === objId);
+    if (index !== -1) {
+      clonedAllConfigs.splice(index, 1);
+    }
+    const allString = JSON.stringify(clonedAllConfigs);
+    localStorage.setItem('STORE_KEY', allString);
+  } catch(err) {
+    console.warn('Error removing object');
+  }
+};
+
