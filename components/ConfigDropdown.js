@@ -1,14 +1,21 @@
+import { useCallback } from 'react';
 import { Menu } from '@headlessui/react'
 import { FiFile } from 'react-icons/fi';
-import { getAllObjects, loadObject } from 'utils/localStorage';
+import { getAllObjects, loadObject, removeObject } from 'utils/localStorage';
 import { useState, useEffect } from 'react';
+import { CgTrash } from 'react-icons/cg';
 
 const ConfigDropdown = (props) => {
   const { onLoad } = props;
   const [ allConfigs, setAllconfigs ] = useState();
-  useEffect( () => {
+
+  const updateConfigs = useCallback( () => {
     const configs = getAllObjects();
     setAllconfigs(configs);
+  },[]);
+
+  useEffect( () => {
+    updateConfigs();
   }, []);
 
   if (!allConfigs) {
@@ -23,25 +30,40 @@ const ConfigDropdown = (props) => {
     }
   }
 
-  const menuItems = allConfigs?.length ? allConfigs.map( (item, index) => {
+  const deleteConfig = event => {
+    const itemId = event.currentTarget.dataset?.itemId;
+    if (itemId) {
+      removeObject(itemId);
+      updateConfigs();
+    }
+  }
+
+  const menuItems = allConfigs?.length ? allConfigs.reverse().map( (item, index) => {
     const displayName = item.configName || `Config ${index+1}`;
-    console.log('item', item);
     return (
       <Menu.Item key={item.id}>
+        <div className="flex">
         <button 
           data-item-id={item.id}
           onClick={loadItem}
-          className="px-2 hover:text-blue-300 text-left">{displayName}</button>
+          className="px-2 flex-1 hover:text-blue-300 text-left 
+            whitespace-nowrap overflow-hidden text-ellipsis">{displayName}</button>
+        <button 
+          onClick={deleteConfig} 
+          data-item-id={item.id}
+            className="hover:text-blue-300 flex-shrink-0"><CgTrash /></button>
+
+        </div>
       </Menu.Item>
     )}
-  ) : <p>No configs saved yet</p>;
+  ) : <p className="py-8 text-gray-400 text-center">No configs saved yet</p>;
 
   return (
     <Menu as="div" className="relative flex items-center transition-all">
       <Menu.Button className="hover:text-blue-300"><FiFile /></Menu.Button>
-      <Menu.Items className="absolute -right-2 top-8 w-56 mt-2 z-10 
-        origin-top-right py-2 flex flex-col bg-gray-500 space-y-2
-        text-base rounded-sm h-72 overflow-y-auto">
+      <Menu.Items className="absolute -right-2 top-9 w-56 z-10 
+        origin-top-right p-4 flex flex-col bg-gray-700 space-y-2
+        text-base rounded-sm max-h-72 overflow-y-auto">
         {menuItems}
       </Menu.Items>
     </Menu>
