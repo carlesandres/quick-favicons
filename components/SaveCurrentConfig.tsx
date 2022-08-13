@@ -27,19 +27,16 @@ const SaveCurrentConfig = (props) => {
         isOpen={showConfirmDialog}
         closeModal={closeModal}
         title="Give this config a name"
-        description="Save it now to retrieve later">
+        description="So you can retrieve it later">
         <div>
-          <label htmlFor="filename" className="block text-sm font-medium text-gray-700">
-            filename
-          </label>
           <div className="mt-1">
             <input
               type="email"
-              name="filename"
-              id="filename"
+              name="configName"
+              id="configName"
               className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 
               block w-full sm:text-sm border-gray-300 rounded-md"
-              placeholder="aaa"
+              placeholder="Enter a description for your favicon configuration"
               onChange={changeConfigName}
               value={configName}
               />
