@@ -9,6 +9,7 @@ const SaveCurrentConfig = (props) => {
 
   const save = () => {
     addObject({...props.canvasProps, configName});
+    setConfigName('');
     closeModal();
   }
 
@@ -26,21 +27,18 @@ const SaveCurrentConfig = (props) => {
       <ConfirmModal
         isOpen={showConfirmDialog}
         closeModal={closeModal}
-        title="Give this config a name"
-        description="So you can retrieve it later">
-        <div>
-          <div className="mt-1">
+        title="Give this config a name">
+        <div className="mt-4">
             <input
               type="email"
               name="configName"
               id="configName"
-              className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 
+              className="shadow-sm p-2 focus:ring-indigo-500 focus:border-indigo-500 
               block w-full sm:text-sm border-gray-300 rounded-md"
               placeholder="Enter a description for your favicon configuration"
               onChange={changeConfigName}
               value={configName}
               />
-          </div>
         </div>
         <div className="mt-4">
           <button
