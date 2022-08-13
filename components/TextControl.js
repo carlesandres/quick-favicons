@@ -15,6 +15,7 @@ const TextControl = (props) => {
         htmlFor={name}>{`${label}:`}</label>
       <input
         type={type}
+        id={name}
         name={name}
         onChange={change}
         value={value}

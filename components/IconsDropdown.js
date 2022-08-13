@@ -12,15 +12,32 @@ const IconsDropdown = (props) => {
           return icon.toLowerCase().includes(query.toLowerCase())
         })
 
+  const clean = () => {
+    setQuery('');
+    props.onChange('');
+  }
+
+  const input = props.value ?
+    <div className="relative border p-1 bg-gray-200 rounded-sm
+      text-gray-600 ">
+      {props.value}
+      <span className="rounded h-4 w-4 border border-gray-900 p-1
+        absolute -top-1 -right-1 text-xs leading-none bg-white
+        " onClick={clean}>x</span>
+    </div> :
+      <Combobox.Input 
+        className="rounded-sm p-1 w-full"
+        onChange={(event) => setQuery(event.target.value)} />
+
   return (
+    <div>
+    <label>Icon:</label>
     <Combobox 
       as="div"
       className="relative"
       value={props.icon} 
       onChange={props.onChange}>
-      <Combobox.Input 
-        className="rounded-sm p-1 w-full"
-        onChange={(event) => setQuery(event.target.value)} />
+      {input}
       <Combobox.Options className="absolute top-10 max-h-24 overflow-auto
         bg-gray-100 text-sm">
         {filteredIcons.map((icon) => (
@@ -34,6 +51,7 @@ const IconsDropdown = (props) => {
         ))}
       </Combobox.Options>
     </Combobox>
+      </div>
   )
 }
 
