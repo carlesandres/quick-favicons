@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { draw } from "utils/draw";
 import { createSvgFromIcon } from "utils/createSvgFromIcon";
-import pngToIco from "png-to-ico";
 import InfoTooltip from "components/InfoTooltip";
 
 const Canvas = (props) => {
