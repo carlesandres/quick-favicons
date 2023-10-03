@@ -3,29 +3,30 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 3003",
+    "dev": "next dev -p 3006",
     "build": "next build",
     "start": "next start",
     "lint": "eslint ."
   },
   "dependencies": {
-    "@headlessui/react": "1.6.6",
-    "nanoid": "4.0.0",
-    "next": "12.2.5",
+    "@headlessui/react": "1.7.17",
+    "nanoid": "5.0.1",
+    "next": "13.5.4",
+    "png-to-ico": "^2.1.8",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-icons": "4.4.0"
+    "react-icons": "4.11.0"
   },
   "devDependencies": {
-    "@types/node": "^18.7.3",
-    "@types/react": "^18.0.17",
-    "autoprefixer": "^10.4.8",
-    "eslint": "^8.21.0",
-    "eslint-config-next": "^12.2.5",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-cypress": "^2.12.1",
-    "postcss": "8.4.16",
-    "tailwindcss": "^3.1.8",
-    "typescript": "^4.7.4"
+    "@types/node": "^20.8.2",
+    "@types/react": "^18.2.24",
+    "autoprefixer": "^10.4.16",
+    "eslint": "^8.50.0",
+    "eslint-config-next": "^13.5.4",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-cypress": "^2.15.1",
+    "postcss": "8.4.31",
+    "tailwindcss": "^3.3.3",
+    "typescript": "^5.2.2"
   }
 }
