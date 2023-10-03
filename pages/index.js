@@ -42,7 +42,7 @@ export default function Home () {
       <nav className="p-4 bg-gray-700 text-white flex justify-between">
         <div className="flex space-x-2">
           <div className="h-6 w-6">
-            <Image src={logo} /> 
+            <Image src={logo} alt="Quick Favicons" />
           </div>
           <span>Quick Favicons</span>
           <span className="italic text-yellow-100">- Create a favicon in seconds, not minutes</span>
