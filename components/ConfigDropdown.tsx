@@ -5,9 +5,13 @@ import { getAllObjects, loadObject, removeObject } from 'utils/localStorage';
 import { useState, useEffect } from 'react';
 import { CgTrash } from 'react-icons/cg';
 
-const ConfigDropdown = (props) => {
+interface ConfigDropdownProps {
+  onLoad: (obj: any) => void;
+}
+
+const ConfigDropdown = (props: ConfigDropdownProps) => {
   const { onLoad } = props;
-  const [ allConfigs, setAllconfigs ] = useState();
+  const [ allConfigs, setAllconfigs ] = useState([]);
 
   const updateConfigs = useCallback( () => {
     const configs = getAllObjects();
@@ -16,13 +20,13 @@ const ConfigDropdown = (props) => {
 
   useEffect( () => {
     updateConfigs();
-  }, []);
+  }, [updateConfigs]);
 
   if (!allConfigs) {
     return null;
   }
 
-  const loadItem = event => {
+  const loadItem = (event: React.MouseEvent<HTMLButtonElement>) => {
     const itemId = event.currentTarget.dataset?.itemId;
     if (itemId) {
       const obj = loadObject(itemId);
@@ -30,7 +34,7 @@ const ConfigDropdown = (props) => {
     }
   }
 
-  const deleteConfig = event => {
+  const deleteConfig = (event: React.MouseEvent<HTMLButtonElement>) => {
     const itemId = event.currentTarget.dataset?.itemId;
     if (itemId) {
       removeObject(itemId);
@@ -38,7 +42,7 @@ const ConfigDropdown = (props) => {
     }
   }
 
-  const menuItems = allConfigs?.length ? allConfigs.reverse().map( (item, index) => {
+  const menuItems = allConfigs?.length ? allConfigs.reverse().map( (item, index:number) => {
     const displayName = item.configName || `Config ${index+1}`;
     return (
       <Menu.Item key={item.id}>
