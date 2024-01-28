@@ -6,23 +6,24 @@ const onFinished = (canvas: OffscreenCanvas) => {
     self.postMessage({
       status: 'finished',
       bmp
-    }, [bmp]);
+    }, '' , [bmp]);
   });
 };
 
-self.onmessage = e => {
+let image: ImageBitmap;
+
+self.onmessage = (e: MessageEvent) => {
   if (e.data.image) {
-    self.image = e.data.image;
+    image = e.data.image;
     return;
   }
 
   if (e.data.props) {
-    const props = Object.assign({}, e.data.props, { image: self.image });
+    const props = { ...e.data.props, image};
     if (props.squareMosaic) {
       props.colsInMosaic = props.rowsInMosaic;
     }
-    new SizesMaker(props, OffscreenCanvas, onFinished); // eslint-disable-line no-new
+    const offscreen = new OffscreenCanvas(256, 256);
+    new SizesMaker(props, offscreen, onFinished); // eslint-disable-line no-new
   }
 };
-
-export {};
