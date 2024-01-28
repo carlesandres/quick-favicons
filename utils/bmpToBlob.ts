@@ -1,11 +1,11 @@
-export const canvasToBlob = async canvas => {
+export const canvasToBlob = async (canvas: HTMLCanvasElement) => {
   const blob = await new Promise(resolve => {
     canvas.toBlob(blob => resolve(blob));
   });
-  return blob;
+  return blob as Blob;
 };
 
-export default async bitmap => {
+const bmpToBlob = async (bitmap: ImageBitmap) => {
   if (!bitmap?.width) {
     throw new Error('image empty');
   }
@@ -13,7 +13,7 @@ export default async bitmap => {
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('bitmaprenderer');
   if (!ctx) {
-    return;
+    return null;
   }
   // We have to "clone" the bitmap so that we don't "transfer"
   // the input image, which would make this method destructive instead
@@ -24,3 +24,5 @@ export default async bitmap => {
   const blob = await canvasToBlob(canvas);
   return blob;
 };
+
+export default bmpToBlob;

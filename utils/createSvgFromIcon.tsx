@@ -1,4 +1,4 @@
-export const createSvgFromIcon = async (iconName) => {
+export const createSvgFromIcon = async (iconName: string) => {
   const imgUrl = `icons/${iconName}.svg`;
   const resp = await fetch(imgUrl);
   const XML = await resp.text();

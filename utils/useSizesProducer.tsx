@@ -1,24 +1,23 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import bitmapToBlob from 'utils/bmpToBlob';
 
-export const useSizesProducer = props => {
-  const [worker, setWorker] = useState(null);
-  const [outImageBmp, setOutimagebmp] = useState();
-  const [outImageBlob, setOutimageblob] = useState();
+interface Props {
+  image: ImageBitmap;
+  stringifiedProps: string;
+}
 
-  // wait for the worker to load
-  useEffect(() => {
-    const getWorker = async () => {
-      const Worker = await import('./sizesWorker');
-      await setWorker(Worker.default());
-    };
+export const useSizesProducer = (props: Props): [ImageBitmap, Blob] => {
+  const [outImageBmp, setOutimagebmp] = useState<ImageBitmap | null>(null);
+  const [outImageBlob, setOutimageblob] = useState<Blob | null>(null);
 
-    getWorker();
-  }, []);
+  const worker: Worker = useMemo(
+    () => new Worker(new URL("./sizesWorker", import.meta.url)),
+    []
+  );
 
   // Redraw mosaic if params ok
   useEffect(() => {
-    if (worker && props.image) {
+    if (props.image) {
       const makeImg = () => {
         // Don't make this an async function, it does not work
         // with web workers
@@ -34,7 +33,7 @@ export const useSizesProducer = props => {
 
       makeImg();
     }
-  }, [props.stringifiedProps, props.image, worker]);
+  }, [worker, props.stringifiedProps, props.image]);
 
   // Listen to the worker's "finished" messge
   useEffect(() => {

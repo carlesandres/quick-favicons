@@ -1,6 +1,6 @@
 import SizesMaker from 'utils/sizesMaker';
 
-const onFinished = canvas => {
+const onFinished = (canvas: OffscreenCanvas) => {
   requestAnimationFrame(() => {
     const bmp = canvas.transferToImageBitmap();
     self.postMessage({
@@ -24,3 +24,5 @@ self.onmessage = e => {
     new SizesMaker(props, OffscreenCanvas, onFinished); // eslint-disable-line no-new
   }
 };
+
+export {};

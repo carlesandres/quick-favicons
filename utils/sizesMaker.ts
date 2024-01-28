@@ -1,11 +1,17 @@
-const { flatten } = require('lodash');
-const hexToHsl = require('hex-to-hsl');
+import flatten from 'lodash/flatten';
+import { hexToHsl } from 'hex-to-hsl';
 
 const easeInOut = t => t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
 
 class mosaicClass {
+  canvas: any;
+  onFinish: any;
+  ctx: any;
+  s: any;
+
   constructor (props, oCanvas, onFinishCb) {
     this.s = props;
+    this.canvas = null;
     if (!this.s.image) {
       console.error('no image'); // eslint-disable-line no-console
       return;
@@ -166,7 +172,7 @@ class mosaicClass {
     const flatCombinations = flatten(combinations);
     // TO-DO: Width and height are not the correct names!!
     flatCombinations.forEach(({ width: originX, height: originY, reverseX, reverseY, empty }) => {
-      const operation = () => this.drawTranslatedRotatedImage(size, originX, originY, reverseX, reverseY, empty, bgColor);
+      const operation = () => this.drawTranslatedRotatedImage(size, originX, originY, reverseX, reverseY, empty);
       operation();
     });
 
@@ -189,3 +195,5 @@ class mosaicClass {
     this.onFinish(this.canvas);
   }
 }
+
+export default mosaicClass;
