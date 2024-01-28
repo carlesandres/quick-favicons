@@ -2,6 +2,8 @@ import React, { useState, useRef, useEffect } from "react";
 import { draw } from "utils/draw";
 import { createSvgFromIcon } from "utils/createSvgFromIcon";
 import InfoTooltip from "components/InfoTooltip";
+import { nanoid } from "nanoid";
+
 
 const Canvas = (props) => {
   const canvasRef = useRef();
@@ -15,10 +17,8 @@ const Canvas = (props) => {
     }
     const strData = canvas.toDataURL("image/png", 1.0);
 
-    const name = `icon-col-${props.color}-rad-${props.radius}-letter-${props.letter}.png`;
-
     const link = document.createElement("a");
-    link.download = name;
+    link.download = `${nanoid()}.png`;
     link.href = strData;
     link.click();
   };
