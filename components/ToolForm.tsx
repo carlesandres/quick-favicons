@@ -32,7 +32,7 @@ const ToolForm = (props: ToolFormProps) => {
     onChange({ ...config, motifPadding });
   };
   const onChangeType = (type: string) => onChange({ ...config, type });
-  const onChangeNoBg = (event) =>
+  const onChangeNoBg = (event: React.ChangeEvent<HTMLInputElement>) =>
     onChange({ ...config, noBackground: event.target.checked });
 
   const iconsDr = <IconsDropdown value={config.icon} onChange={onChangeIcon} />;
@@ -70,7 +70,7 @@ const ToolForm = (props: ToolFormProps) => {
         <input
           type="checkbox"
           id="no-background"
-          value={config.noBackground}
+          checked={config.noBackground}
           onChange={onChangeNoBg}
         />
         <label htmlFor="no-background" className="ml-2">
