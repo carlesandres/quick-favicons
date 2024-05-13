@@ -2,21 +2,24 @@ import { useState } from 'react';
 import icons from 'components/icons.json';
 import { cn } from '@/lib/utils';
 import { PopoverTrigger, PopoverContent, Popover } from './ui/popover';
-import { CommandInput, CommandEmpty, CommandGroup, CommandItem } from 'cmdk';
-import { ChevronsUpDown, Command, Check } from 'lucide-react';
+import {
+  Command,
+  CommandInput,
+  CommandEmpty,
+  CommandGroup,
+  CommandItem,
+} from 'cmdk';
+import { ChevronsUpDown, Check } from 'lucide-react';
 import { Button } from './ui/button';
 
 interface IconsDropdownProps {
-  value?: string;
+  value: string;
   onChange: (value: string) => void;
 }
 
 const IconsDropdown = (props: IconsDropdownProps) => {
-  const { value, onChange } = props;
+  const { value = '', onChange } = props;
   const [open, setOpen] = useState(false);
-
-  console.log('--------------------------------------------------- value');
-  console.log('value', value);
 
   const fullIcons = icons.icons
     .map((icon: string) => ({
