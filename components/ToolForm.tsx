@@ -1,7 +1,7 @@
 import Dropdown from 'components/Dropdown';
 import IconsDropdown from 'components/IconsDropdown';
 import TextControl from 'components/TextControl';
-import { Config } from '@/pages/index';
+import { Config } from 'components/App';
 import { GradientPicker } from './GradientPicker';
 import { Label } from './ui/label';
 
@@ -46,6 +46,7 @@ const ToolForm = (props: ToolFormProps) => {
       onChange={onChangeLetter}
       maxLength={1}
       className="w-8 rounded-sm p-1 text-center"
+      outerClassName="flex gap-2 items-center"
     />
   );
 
@@ -113,7 +114,7 @@ const ToolForm = (props: ToolFormProps) => {
         onChange={onChangeMotifPadding}
       />
       <Dropdown
-        label="Type"
+        label="Motif Type"
         onChange={onChangeType}
         value={config.type}
         options={props.types}

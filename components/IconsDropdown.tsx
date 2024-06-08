@@ -78,10 +78,10 @@ const IconsDropdown = (props: IconsDropdownProps) => {
         <PopoverContent className="w-[200px] p-0">
           <Command>
             <CommandInput
-              className="p-1 text-sm"
+              className="m-1 mt-2 rounded-sm border p-1 text-sm"
               placeholder="Search icon..."
             />
-            <CommandList>
+            <CommandList className="max-h-[300px] overflow-y-auto">
               <CommandEmpty>No icon found.</CommandEmpty>
               <CommandGroup>{svgList}</CommandGroup>
             </CommandList>
