@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: `/`,
   },
-  description: 'Create a favicon in seconds not minutes. Quick and simple.',
+  description: 'Create a favicon in seconds not minutes'
 };
 
 export default function Home() {
