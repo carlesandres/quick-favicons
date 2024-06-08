@@ -2,14 +2,14 @@ import React, { useState, useRef, useEffect } from 'react';
 import { draw } from 'utils/draw';
 import { createSvgFromIcon } from 'utils/createSvgFromIcon';
 import InfoTooltip from 'components/InfoTooltip';
+import { nanoid } from 'nanoid';
+import { Button } from './ui/button';
 
 interface Svg {
   path2D: Path2D;
   width: number;
   height: number;
 }
-
-import { nanoid } from 'nanoid';
 
 interface CanvasProps {
   color: string;
@@ -92,7 +92,7 @@ const Canvas = (props: CanvasProps) => {
 
   return (
     <section className="preview text-center">
-      <div className="canvas-container inline-block h-28 w-28">
+      <div className="canvas-container dotted inline-block h-64 w-64 sm:h-96 sm:w-96">
         <canvas
           className="h-full w-full"
           width={1000}
@@ -101,13 +101,7 @@ const Canvas = (props: CanvasProps) => {
         />
       </div>
       <div className="mt-12 flex items-center justify-center space-x-2">
-        <button
-          className="rounded border bg-blue-500 p-2 
-          text-white transition hover:bg-blue-600"
-          onClick={download}
-        >
-          Download
-        </button>
+        <Button onClick={download}>Download</Button>
         <InfoTooltip>
           <p className="py-4">
             {' '}
