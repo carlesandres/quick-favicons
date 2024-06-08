@@ -1,7 +1,7 @@
 import Dropdown from 'components/Dropdown';
 import IconsDropdown from 'components/IconsDropdown';
 import TextControl from 'components/TextControl';
-import { Config } from '@/pages/index';
+import { Config } from 'components/App';
 import { GradientPicker } from './GradientPicker';
 import { Label } from './ui/label';
 
