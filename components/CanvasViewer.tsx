@@ -92,7 +92,7 @@ const Canvas = (props: CanvasProps) => {
 
   return (
     <section className="preview text-center">
-      <div className="canvas-container dotted inline-block h-28 w-28">
+      <div className="canvas-container dotted inline-block h-64 w-64 sm:h-96 sm:w-96">
         <canvas
           className="h-full w-full"
           width={1000}
