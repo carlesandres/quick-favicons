@@ -2,6 +2,8 @@ import Dropdown from 'components/Dropdown';
 import IconsDropdown from 'components/IconsDropdown';
 import TextControl from 'components/TextControl';
 import { Config } from '@/pages/index';
+import { GradientPicker } from './GradientPicker';
+import { Label } from './ui/label';
 
 interface ToolFormProps {
   config: Config;
@@ -54,18 +56,22 @@ const ToolForm = (props: ToolFormProps) => {
       className="flex h-full flex-col space-y-4 bg-gray-300
       p-6 text-sm"
     >
-      <TextControl
-        label="BG color"
-        type="color"
-        value={config.color}
-        onChange={onChangeBGColor}
-      />
-      <TextControl
-        label="FG color"
-        type="color"
-        value={config.fgcolor}
-        onChange={onChangeFGColor}
-      />
+      <div className="flex flex-col gap-2">
+        <Label>FG color</Label>
+        <GradientPicker
+          className="w-full truncate"
+          background={config.fgcolor}
+          setBackground={onChangeFGColor}
+        />
+      </div>
+      <div className="flex flex-col gap-2">
+        <Label>BG color</Label>
+        <GradientPicker
+          className="w-full truncate"
+          background={config.color}
+          setBackground={onChangeBGColor}
+        />
+      </div>
       <div className="flex items-center">
         <input
           type="checkbox"
@@ -85,6 +91,7 @@ const ToolForm = (props: ToolFormProps) => {
         step="5"
         value={config.radius || 0}
         onChange={onChangeRadius}
+        disabled={config.noBackground}
       />
       <TextControl
         label="Outer Padding %"
@@ -94,6 +101,7 @@ const ToolForm = (props: ToolFormProps) => {
         step="5"
         value={config.iconPadding}
         onChange={onChangeIconPadding}
+        disabled={config.noBackground}
       />
       <TextControl
         label="Motif Padding %"
