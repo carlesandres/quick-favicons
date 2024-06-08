@@ -74,3 +74,10 @@
       @apply bg-background text-foreground;
     }
   }
+
+.dotted {
+  background: white;
+  background-image: radial-gradient(black 1px, transparent 0);
+  background-size: 10px 10px;
+  background-position: -4px -4px;
+}
