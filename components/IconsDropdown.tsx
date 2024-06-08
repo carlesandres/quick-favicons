@@ -8,9 +8,11 @@ import {
   CommandEmpty,
   CommandGroup,
   CommandItem,
+  CommandList,
 } from 'cmdk';
 import { ChevronsUpDown, Check } from 'lucide-react';
 import { Button } from './ui/button';
+import { Label } from './ui/label';
 
 interface IconsDropdownProps {
   value: string;
@@ -28,27 +30,39 @@ const IconsDropdown = (props: IconsDropdownProps) => {
     }))
     .filter((x) => x.value);
 
-  const svgList = fullIcons.map((icon) => (
-    <CommandItem
-      key={icon.value}
-      value={icon.value}
-      onSelect={(currentValue) => {
-        onChange(currentValue === value ? '' : currentValue);
-        setOpen(false);
-      }}
-    >
-      <Check
-        className={cn(
-          'mr-2 h-4 w-4',
-          value === icon.value ? 'opacity-100' : 'opacity-0',
-        )}
-      />
-      {icon.label}
-    </CommandItem>
-  ));
+  if (!fullIcons.length) {
+    return null;
+  }
+
+  const svgList = fullIcons.map((icon) => {
+    return (
+      <CommandItem
+        key={icon.value}
+        value={icon.value}
+        onSelect={(currentValue) => {
+          onChange(currentValue === value ? '' : currentValue);
+          setOpen(false);
+        }}
+        className="flex cursor-pointer items-center px-2 py-1 text-sm hover:bg-gray-200"
+      >
+        <Check
+          className={cn(
+            'mr-2 h-4 w-4',
+            value === icon.value ? 'opacity-100' : 'opacity-0',
+          )}
+        />
+        {icon.label}
+      </CommandItem>
+    );
+  });
+
+  const icon = value
+    ? fullIcons.find((icon) => icon.value === value)?.label
+    : 'Select icon...';
 
   return (
-    <div>
+    <div className="flex w-full flex-col gap-3">
+      <Label>Icon:</Label>
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <Button
@@ -57,17 +71,17 @@ const IconsDropdown = (props: IconsDropdownProps) => {
             aria-expanded={open}
             className="w-[200px] justify-between"
           >
-            {value
-              ? fullIcons.find((icon) => icon.value === value)?.label
-              : 'Select icon...'}
+            {icon}
             <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
           </Button>
         </PopoverTrigger>
         <PopoverContent className="w-[200px] p-0">
           <Command>
             <CommandInput placeholder="Search icon..." />
-            <CommandEmpty>No icon found.</CommandEmpty>
-            <CommandGroup>{svgList}</CommandGroup>
+            <CommandList>
+              <CommandEmpty>No icon found.</CommandEmpty>
+              <CommandGroup>{svgList}</CommandGroup>
+            </CommandList>
           </Command>
         </PopoverContent>
       </Popover>

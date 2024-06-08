@@ -26,7 +26,7 @@ const Dropdown = (props: DropdownProps) => {
   });
 
   return (
-    <div className="flex items-center space-x-2">
+    <div className="flex w-full flex-col gap-3">
       <Label className="" htmlFor={name}>{`${label}:`}</Label>
       <Select onValueChange={onChange} value={value}>
         <SelectTrigger className="w-[180px]">
