@@ -1,58 +1,92 @@
 import { useState } from 'react';
-import { Combobox } from '@headlessui/react'
 import icons from 'components/icons.json';
+import { cn } from '@/lib/utils';
+import { PopoverTrigger, PopoverContent, Popover } from './ui/popover';
+import {
+  Command,
+  CommandInput,
+  CommandEmpty,
+  CommandGroup,
+  CommandItem,
+  CommandList,
+} from 'cmdk';
+import { ChevronsUpDown, Check } from 'lucide-react';
+import { Button } from './ui/button';
+import { Label } from './ui/label';
 
-const IconsDropdown = (props) => {
-  const [query, setQuery] = useState('')
+interface IconsDropdownProps {
+  value: string;
+  onChange: (value: string) => void;
+}
 
-  const filteredIcons = icons.icons.filter((icon) => {
-    return icon.toLowerCase().includes(query.toLowerCase())
-  })
+const IconsDropdown = (props: IconsDropdownProps) => {
+  const { value = '', onChange } = props;
+  const [open, setOpen] = useState(false);
 
-  const clean = () => {
-    setQuery('');
-    props.onChange('');
+  const fullIcons = icons.icons
+    .map((icon: string) => ({
+      value: icon,
+      label: icon,
+    }))
+    .filter((x) => x.value);
+
+  if (!fullIcons.length) {
+    return null;
   }
 
-  const input = props.value ?
-    <div className="relative border p-1 bg-gray-200 rounded-sm
-      text-gray-600 ">
-      {props.value}
-      <span className="rounded h-4 w-4 border border-gray-900 p-1
-        absolute -top-1 -right-1 text-xs leading-none bg-white
-        " onClick={clean}>x</span>
-    </div> :
-    <Combobox.Input 
-      autoFocus
-      className="rounded-sm p-1 w-full"
-      onChange={(event) => setQuery(event.target.value)} />
+  const svgList = fullIcons.map((icon) => {
+    return (
+      <CommandItem
+        key={icon.value}
+        value={icon.value}
+        onSelect={(currentValue) => {
+          onChange(currentValue === value ? '' : currentValue);
+          setOpen(false);
+        }}
+        className="flex cursor-pointer items-center px-2 py-1 text-sm hover:bg-gray-200"
+      >
+        <Check
+          className={cn(
+            'mr-2 h-4 w-4',
+            value === icon.value ? 'opacity-100' : 'opacity-0',
+          )}
+        />
+        {icon.label}
+      </CommandItem>
+    );
+  });
+
+  const icon = value
+    ? fullIcons.find((icon) => icon.value === value)?.label
+    : 'Select icon...';
 
   return (
-    <div>
-      <label>Icon:</label>
-      <Combobox 
-        as="div"
-        className="relative"
-        value={props.icon} 
-        onChange={props.onChange}>
-        {input}
-        <Combobox.Options className="absolute top-8 max-h-24 overflow-auto
-          bg-gray-100 w-full text-sm rounded-sm">
-          <div className="flex flex-col space-y-2 p-2">
-            {filteredIcons.map((icon) => (
-              <Combobox.Option 
-                className="hover:bg-gray-200 cursor-pointer flex space-x-2 items-center"
-                key={icon} 
-                value={icon}>
-                <img className="w-4 h-4" src={`icons/${icon}.svg`} alt={icon} />
-                <span>{icon}</span>
-              </Combobox.Option>
-            ))}
-          </div>
-        </Combobox.Options>
-      </Combobox>
+    <div className="flex w-full flex-col gap-3">
+      <Label>Icon:</Label>
+      <Popover open={open} onOpenChange={setOpen}>
+        <PopoverTrigger asChild>
+          <Button
+            variant="outline"
+            role="combobox"
+            aria-expanded={open}
+            className="w-[200px] justify-between"
+          >
+            {icon}
+            <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent className="w-[200px] p-0">
+          <Command>
+            <CommandInput placeholder="Search icon..." />
+            <CommandList>
+              <CommandEmpty>No icon found.</CommandEmpty>
+              <CommandGroup>{svgList}</CommandGroup>
+            </CommandList>
+          </Command>
+        </PopoverContent>
+      </Popover>
     </div>
-  )
-}
+  );
+};
 
 export default IconsDropdown;
