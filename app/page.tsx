@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: `/`,
   },
-  description: 'Create a favicon in seconds not minutes'
+  description: 'Create a favicon in seconds not minutes',
 };
 
 export default function Home() {
@@ -18,6 +18,12 @@ export default function Home() {
       <Head>
         <title>Quick Favicons</title>
         <link rel="icon" href="/favicon.png" sizes="1000x1000" />
+        <script
+          defer
+          data-domain="favicons.carlesandres.com"
+          src="https://plausible.io/js/script.tagged-events.js"
+        ></script>
+
         <meta
           name="description"
           content="Create a favicon in seconds not minutes. Quick and simple."
