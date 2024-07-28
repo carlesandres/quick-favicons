@@ -12,6 +12,24 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <title>Quick Favicons</title>
+        <link rel="icon" href="/favicon.png" sizes="1000x1000" />
+        <script
+          defer
+          data-domain="favicons.carlesandres.com"
+          src="https://plausible.io/js/script.tagged-events.js"
+        ></script>
+
+        <meta
+          name="description"
+          content="Create a favicon in seconds not minutes. Quick and simple."
+        />
+        <meta
+          name="google-site-verification"
+          content="55YTawSTZLLFaN4ftfgi-owRhc5Clh77hJ6mESPDEgE"
+        />
+      </head>
       <body>{children}</body>
     </html>
   );
